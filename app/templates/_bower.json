@@ -1,0 +1,31 @@
+{
+  "name": "app",
+  "main": "app.js",
+  "version": "0.0.0",
+  "homepage": "https://github.com/somebody/app",
+  "authors": ["name <email>"],
+  "description": "desc",
+  "keywords": [],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    ".idea",
+    ".gitignore",
+    "node_modules",
+    "LICENSE",
+    "bower_components",
+    "coverage",
+    "gulpfile.js",
+    "package.json",
+    "*.conf.js",
+    "*_test.js"
+  ],
+  "dependencies": {
+    "angular": ">=1.0.8"
+  },
+  "devDependencies":
+  {
+    "angular-mocks": ">=1.0.8"
+  }
+
+}

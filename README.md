@@ -3,11 +3,11 @@
 > [Yeoman](http://yeoman.io) generator
 
 
-# Disclaimer
+# disclaimer
 
 Work in progress
 
 
-## License
+# license
 
 MIT

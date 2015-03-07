@@ -37,6 +37,7 @@ AngularJsModule.prototype.writing = function()
   this.fs.copy(this.templatePath('karma.conf.js'), this.destinationPath('karma.conf.js'));
 
   this.fs.copy(this.templatePath('.travis.yml'), this.destinationPath('.travis.yml'));
+  this.fs.copy(this.templatePath('.gitignore'), this.destinationPath('.gitignore'));
   this.fs.copy(this.templatePath('editorconfig'), this.destinationPath('.editorconfig'));
   this.fs.copy(this.templatePath('jshintrc'),this.destinationPath('.jshintrc'));
 }

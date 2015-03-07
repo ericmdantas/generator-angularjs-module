@@ -12,13 +12,13 @@
     ".idea",
     ".gitignore",
     "node_modules",
+    "tests",
     "LICENSE",
     "bower_components",
     "coverage",
     "gulpfile.js",
     "package.json",
-    "*.conf.js",
-    "*_test.js"
+    "*.conf.js"
   ],
   "dependencies": {
     "angular": ">=1.0.8"

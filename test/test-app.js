@@ -26,7 +26,7 @@ describe('angularjs-module:app', function () {
       'gulpfile.js',
       'README.md',
       '.jshintrc',
-      '.jshintrc',
+      '.gitignore',
       'karma.conf.js',
       'src/app.js',
       'tests/app_test.js'

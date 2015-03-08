@@ -37,14 +37,18 @@ Answer the questions that'll show, and then BOOM!
 You've got:
 
 - karma.conf.js ready: 
-    -- PhantomJS, Chrome (default and Canary), Firefox (default and Nighly), Safari, Internet Explorer;
-    -- Coverage setup;
+    > PhantomJS, Chrome (default and Canary), Firefox (default and Nighly), Safari, Internet Explorer;
+
+    > Coverage setup;
   
 - gulpfile.js ready: 
-    -- minify your js;
-    -- Travis CI integration;
-    -- Coveralls integration;
-    -- tests on build;
+    > minify your js;
+
+    > Travis CI integration;
+    
+    > Coveralls integration;
+    
+    > tests on build;
     
 - README with both Travis CI and coveralls badge;    
 

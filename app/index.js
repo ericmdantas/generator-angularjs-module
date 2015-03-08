@@ -19,22 +19,25 @@ AngularJsModule.prototype.initializing = function()
 
 AngularJsModule.prototype.prompting = function()
 {
-  this.log(yosay('Welcome to the terrific ' + chalk.red('AngularJS Module') + ' generator!'));
+  this.log(yosay('Welcome to the terrific ' + chalk.green('AngularJS Module') + ' generator!'));
 
 }
 
 AngularJsModule.prototype.writing = function()
 {
-  this.fs.copy(this.templatePath('_app.js'),this.destinationPath('src/app.js'));
-  this.fs.copy(this.templatePath('_app_test.js'),this.destinationPath('tests/app_test.js'));
+  var _app = {app: this.appName};
+  var _username = {username: this.githubUsername};
+  var _appAndUsername = {app: _app.app, username: _username.username};
 
-  this.fs.copy(this.templatePath('_package.json'),this.destinationPath('package.json'));
-  this.fs.copy(this.templatePath('_bower.json'),this.destinationPath('bower.json'));
+  this.template('src/_app.js', 'src/' + _app.app + '.js', _app);
+  this.template('tests/_app_test.js', 'tests/' + _app.app + '_test.js', _app);
 
-  this.fs.copy(this.templatePath('README.md'), this.destinationPath('README.md'));
+  this.template('_package.json', 'package.json', _appAndUsername);
+  this.template('_bower.json', 'bower.json', _appAndUsername);
+  this.template('README.md', 'README.md', _appAndUsername);
 
-  this.fs.copy(this.templatePath('gulpfile.js'), this.destinationPath('gulpfile.js'));
-  this.fs.copy(this.templatePath('karma.conf.js'), this.destinationPath('karma.conf.js'));
+  this.template('gulpfile.js', 'gulpfile.js', _app);
+  this.template('karma.conf.js', 'karma.conf.js', _app);
 
   this.fs.copy(this.templatePath('.travis.yml'), this.destinationPath('.travis.yml'));
   this.fs.copy(this.templatePath('.gitignore'), this.destinationPath('.gitignore'));
@@ -45,6 +48,32 @@ AngularJsModule.prototype.writing = function()
 AngularJsModule.prototype.install = function()
 {
   this.installDependencies({skipInstall: this.options['skip-install']});
+}
+
+AngularJsModule.prototype.prompUser = function()
+{
+  var done = this.async();
+
+  var prompts =
+  [
+    {
+      name: 'appName',
+      message: 'What is the name of your app?'
+    },
+    {
+      name: 'githubUsername',
+      message: 'What is your username on Github?'
+    }
+  ];
+
+  this.prompt(prompts, function(props)
+  {
+    this.appName = props.appName;
+    this.githubUsername = props.githubUsername;
+
+    done();
+
+  }.bind(this));
 }
 
 module.exports = AngularJsModule;

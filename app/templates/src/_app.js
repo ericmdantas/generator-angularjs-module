@@ -3,7 +3,7 @@
 ;(function(ng)
 {
   ng
-    .module('app', [])
+    .module('<%= app %>', [])
     .service('GreetingService', [function()
     {
         var _sayHello = function()

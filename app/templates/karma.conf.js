@@ -20,7 +20,7 @@ var _karma = function(config)
 
       'bower_components/angular-mocks/angular-mocks.js',
 
-      'src/app.js',
+      'src/<%= app %>.js',
 
       'tests/*_test.js'
     ],
@@ -33,7 +33,7 @@ var _karma = function(config)
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
-      'app.js': 'coverage'
+      'src/<%= app %>.js': 'coverage'
     },
 
     coverageReporter:

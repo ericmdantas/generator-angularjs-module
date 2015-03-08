@@ -1,7 +1,7 @@
 {
-  "name": "package",
-  "version": "0.0.0",
-  "main": "lib/index.js",
+  "name": "<%= app %>",
+  "version": "0.0.1",
+  "main": "src/<%= app %>.js",
   "scripts":
   {
     "test": "gulp coverage"
@@ -22,5 +22,17 @@
     "karma-opera-launcher": "^0.1.0",
     "karma-phantomjs-launcher": "^0.1.4",
     "karma-safari-launcher": "^0.1.1"
-  }
+  },
+  "repository":
+  {
+    "type": "git",
+    "url": "https://github.com/<%= username %>/<%= app %>.git"
+  },
+  "author": "<%= username %>",
+  "license": "MIT",
+  "bugs": 
+  {
+    "url": "https://github.com/<%= username %>/<%= app %>/issues"
+  },
+  "homepage": "https://github.com/<%= username %>/<%= app %>"
 }

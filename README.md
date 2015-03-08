@@ -1,13 +1,62 @@
-# generator-angularjs-module [![Build Status](https://secure.travis-ci.org/ericmdantas/generator-angularjs-module.png?branch=master)](https://travis-ci.org/ericmdantas/generator-angularjs-module)
+# generator-angularjs-module 
+[![Build Status](https://secure.travis-ci.org/ericmdantas/generator-angularjs-module.png?branch=master)](https://travis-ci.org/ericmdantas/generator-angularjs-module)
 
 > [Yeoman](http://yeoman.io) generator
 
-
-# Disclaimer
-
-Work in progress
+Focus on your app logic; forget about all the initial repetitive setup.
 
 
-## License
+# install
+
+```
+
+$ npm install -g generator-angularjs-module
+
+```
+
+
+# why?
+
+This generator was created to make the creation of modules in angularjs as easy as possible.
+It has all the best tools to make your app ready to go as fast as possible.
+
+
+# how?
+
+After installing it, run:
+
+```
+
+$ yo angularjs-module
+
+```
+
+Answer the questions that'll show, and then BOOM!
+
+
+You've got:
+
+- karma.conf.js ready: 
+    -- PhantomJS, Chrome (default and Canary), Firefox (default and Nighly), Safari, Internet Explorer;
+    -- Coverage setup;
+  
+- gulpfile.js ready: 
+    -- minify your js;
+    -- Travis CI integration;
+    -- Coveralls integration;
+    -- tests on build;
+    
+- README with both Travis CI and coveralls badge;    
+
+- .gitignore, bower.json and package.json configured; 
+
+- tests created and running!
+
+
+# got any idea to improve this generator?
+
+PRs are welcome! Either commit them, or let me know and we'll talk about it =]
+
+# license
 
 MIT

@@ -4,12 +4,12 @@ describe('my awesome app', function()
 {
   var _GreetingService;
 
-  beforeEach(module('app'));
+  beforeEach(module('<%= app %>'));
 
   beforeEach(inject(function($injector)
   {
     _GreetingService = $injector.get('GreetingService');
-  }))
+  }));
 
   describe('sayHello', function()
   {
@@ -20,11 +20,11 @@ describe('my awesome app', function()
       _GreetingService.sayHello();
 
       expect(_GreetingService.sayHello).toHaveBeenCalled();
-    })
+    });
 
     it('should say hello', function()
     {
         expect(_GreetingService.sayHello()).toEqual("hello there!");
-    })
-  })
-})
+    });
+  });
+});

@@ -1,6 +1,6 @@
 {
   "name": "generator-angularjs-module",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Yeoman generator",
   "license": "MIT",
   "main": "app/index.js",
@@ -12,8 +12,7 @@
   "engines": {
     "node": ">=0.10.0"
   },
-  "scripts":
-  {
+  "scripts": {
     "start": "babel app/index.es6 --watch -o app/index.js --loose",
     "test": "mocha --reporter min"
   },

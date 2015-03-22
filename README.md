@@ -3,8 +3,6 @@
 
 > [Yeoman](http://yeoman.io) generator
 
-Focus on your app logic; forget about all the initial repetitive setup.
-
 
 # install
 
@@ -20,6 +18,8 @@ $ npm install -g generator-angularjs-module
 This generator was created to make the creation of modules in AngularJS as easy as possible.
 
 It has all the best tools to make your app ready to go as fast as possible.
+
+You should focus on your app logic, not on all that repetitive setup process.
 
 
 # how?

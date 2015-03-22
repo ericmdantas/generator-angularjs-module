@@ -17,7 +17,8 @@ $ npm install -g generator-angularjs-module
 
 # why?
 
-This generator was created to make the creation of modules in angularjs as easy as possible.
+This generator was created to make the creation of modules in AngularJS as easy as possible.
+
 It has all the best tools to make your app ready to go as fast as possible.
 
 
@@ -31,7 +32,7 @@ $ yo angularjs-module
 
 ```
 
-Answer the questions that'll show, and then BOOM!
+Answer the questions that'll pop up, and then BOOM!
 
 
 You've got:

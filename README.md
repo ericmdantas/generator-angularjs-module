@@ -19,8 +19,11 @@ This generator was created to make the creation of modules in AngularJS as easy 
 
 It has all the best tools to make your app ready to go as fast as possible.
 
-You should focus on your app logic, not on all that repetitive setup process.
 
+```
+yo angularjs-module
+```
+and be happy!
 
 # how?
 

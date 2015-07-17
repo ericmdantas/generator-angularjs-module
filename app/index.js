@@ -45,10 +45,10 @@ AngularJsModule.prototype.writing = function () {
   this.template("gulpfile.js", "gulpfile.js", _app);
   this.template("karma.conf.js", "karma.conf.js", _app);
 
-  this.fs.copy(this.templatePath(".travis.yml"), this.destinationPath(".travis.yml"));
-  this.fs.copy(this.templatePath(".gitignore"), this.destinationPath(".gitignore"));
-  this.fs.copy(this.templatePath("editorconfig"), this.destinationPath(".editorconfig"));
-  this.fs.copy(this.templatePath("jshintrc"), this.destinationPath(".jshintrc"));
+  this.fs.copy(this.templatePath("_.travis.yml"), this.destinationPath(".travis.yml"));
+  this.fs.copy(this.templatePath("_.gitignore"), this.destinationPath(".gitignore"));
+  this.fs.copy(this.templatePath("_editorconfig"), this.destinationPath(".editorconfig"));
+  this.fs.copy(this.templatePath("_jshintrc"), this.destinationPath(".jshintrc"));
 };
 
 AngularJsModule.prototype.install = function () {

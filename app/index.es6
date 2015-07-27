@@ -1,28 +1,30 @@
 'use strict';
 
-var yeoman = require('yeoman-generator');
-var chalk = require('chalk');
-var yosay = require('yosay');
+import {Base} from 'yeoman-generator';
+import chalk from 'chalk';
+import yosay from 'yosay';
 
-export default class AngularJsModule extends yeoman.generators.Base
-{
-    constructor(args, options, config)
-    {
-        yeoman.generators.Base.apply(this, arguments);
+import Generator from './generator';
+
+export default class AngularJsModule extends Base {
+    constructor(args, options, config) {
+        super(args, options, config);
+
+        this.yosay = yosay;
+        this.chalk = chalk;
+
+        this.gen = new Generator();
     }
 
-    initializing()
-    {
+    initializing() {
       this.pkg = require('../package.json');
     }
 
-    prompting()
-    {
-      this.log(yosay('Welcome to the terrific ' + chalk.green('AngularJS Module') + ' generator!'));
+    prompting() {
+      this.gen.sayHello.call(this);
     }
 
-    writing()
-    {
+    writing() {
       var _app = {app: this.appName};
       var _username = {username: this.githubUsername};
       var _appAndUsername = {app: _app.app, username: _username.username};
@@ -43,13 +45,11 @@ export default class AngularJsModule extends yeoman.generators.Base
       this.fs.copy(this.templatePath('jshintrc'),this.destinationPath('.jshintrc'));
     }
 
-    install()
-    {
+    install() {
       this.installDependencies({skipInstall: this.options['skip-install']});
     }
 
-    prompUser()
-    {
+    prompUser() {
       var done = this.async();
 
       var prompts =

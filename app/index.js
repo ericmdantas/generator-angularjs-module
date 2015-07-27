@@ -1,77 +1,108 @@
-"use strict";
+'use strict';
 
-var _inherits = function (subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) subClass.__proto__ = superClass; };
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
 
-var _classCallCheck = function (instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } };
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
 
-var yeoman = require("yeoman-generator");
-var chalk = require("chalk");
-var yosay = require("yosay");
+var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; desc = parent = getter = undefined; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
 
-var AngularJsModule = (function (_yeoman$generators$Base) {
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var _yeomanGenerator = require('yeoman-generator');
+
+var _chalk = require('chalk');
+
+var _chalk2 = _interopRequireDefault(_chalk);
+
+var _yosay = require('yosay');
+
+var _yosay2 = _interopRequireDefault(_yosay);
+
+var _generator = require('./generator');
+
+var _generator2 = _interopRequireDefault(_generator);
+
+var AngularJsModule = (function (_Base) {
+  _inherits(AngularJsModule, _Base);
+
   function AngularJsModule(args, options, config) {
     _classCallCheck(this, AngularJsModule);
 
-    yeoman.generators.Base.apply(this, arguments);
+    _get(Object.getPrototypeOf(AngularJsModule.prototype), 'constructor', this).call(this, args, options, config);
+
+    this.yosay = _yosay2['default'];
+    this.chalk = _chalk2['default'];
+
+    this.gen = new _generator2['default']();
   }
 
-  _inherits(AngularJsModule, _yeoman$generators$Base);
+  _createClass(AngularJsModule, [{
+    key: 'initializing',
+    value: function initializing() {
+      this.pkg = require('../package.json');
+    }
+  }, {
+    key: 'prompting',
+    value: function prompting() {
+      this.gen.sayHello.call(this);
+    }
+  }, {
+    key: 'writing',
+    value: function writing() {
+      var _app = { app: this.appName };
+      var _username = { username: this.githubUsername };
+      var _appAndUsername = { app: _app.app, username: _username.username };
 
-  AngularJsModule.prototype.initializing = function initializing() {
-    this.pkg = require("../package.json");
-  };
+      this.template('src/_app.js', 'src/' + _app.app + '.js', _app);
+      this.template('tests/_app_test.js', 'tests/' + _app.app + '_test.js', _app);
 
-  AngularJsModule.prototype.prompting = function prompting() {
-    this.log(yosay("Welcome to the terrific " + chalk.green("AngularJS Module") + " generator!"));
-  };
+      this.template('_package.json', 'package.json', _appAndUsername);
+      this.template('_bower.json', 'bower.json', _appAndUsername);
+      this.template('README.md', 'README.md', _appAndUsername);
+
+      this.template('gulpfile.js', 'gulpfile.js', _app);
+      this.template('karma.conf.js', 'karma.conf.js', _app);
+
+      this.fs.copy(this.templatePath('.travis.yml'), this.destinationPath('.travis.yml'));
+      this.fs.copy(this.templatePath('.gitignore'), this.destinationPath('.gitignore'));
+      this.fs.copy(this.templatePath('editorconfig'), this.destinationPath('.editorconfig'));
+      this.fs.copy(this.templatePath('jshintrc'), this.destinationPath('.jshintrc'));
+    }
+  }, {
+    key: 'install',
+    value: function install() {
+      this.installDependencies({ skipInstall: this.options['skip-install'] });
+    }
+  }, {
+    key: 'prompUser',
+    value: function prompUser() {
+      var done = this.async();
+
+      var prompts = [{
+        name: 'appName',
+        message: 'What is the name of your app?'
+      }, {
+        name: 'githubUsername',
+        message: 'What is your username on Github?'
+      }];
+
+      this.prompt(prompts, (function (props) {
+        this.appName = props.appName;
+        this.githubUsername = props.githubUsername;
+
+        done();
+      }).bind(this));
+    }
+  }]);
 
   return AngularJsModule;
-})(yeoman.generators.Base);
+})(_yeomanGenerator.Base);
 
-module.exports = AngularJsModule;
-
-AngularJsModule.prototype.writing = function () {
-  var _app = { app: this.appName };
-  var _username = { username: this.githubUsername };
-  var _appAndUsername = { app: _app.app, username: _username.username };
-
-  this.template("src/_app.js", "src/" + _app.app + ".js", _app);
-  this.template("tests/_app_test.js", "tests/" + _app.app + "_test.js", _app);
-
-  this.template("_package.json", "package.json", _appAndUsername);
-  this.template("_bower.json", "bower.json", _appAndUsername);
-  this.template("README.md", "README.md", _appAndUsername);
-
-  this.template("gulpfile.js", "gulpfile.js", _app);
-  this.template("karma.conf.js", "karma.conf.js", _app);
-
-  this.fs.copy(this.templatePath("_.travis.yml"), this.destinationPath(".travis.yml"));
-  this.fs.copy(this.templatePath("_.gitignore"), this.destinationPath(".gitignore"));
-  this.fs.copy(this.templatePath("_editorconfig"), this.destinationPath(".editorconfig"));
-  this.fs.copy(this.templatePath("_jshintrc"), this.destinationPath(".jshintrc"));
-};
-
-AngularJsModule.prototype.install = function () {
-  this.installDependencies({ skipInstall: this.options["skip-install"] });
-};
-
-AngularJsModule.prototype.prompUser = function () {
-  var done = this.async();
-
-  var prompts = [{
-    name: "appName",
-    message: "What is the name of your app?"
-  }, {
-    name: "githubUsername",
-    message: "What is your username on Github?"
-  }];
-
-  this.prompt(prompts, (function (props) {
-    this.appName = props.appName;
-    this.githubUsername = props.githubUsername;
-
-    done();
-  }).bind(this));
-};
-
-module.exports = AngularJsModule;
+exports['default'] = AngularJsModule;
+module.exports = exports['default'];

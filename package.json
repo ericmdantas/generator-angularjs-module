@@ -13,8 +13,9 @@
     "node": ">=0.10.0"
   },
   "scripts": {
-    "start": "babel app/index.es6 --watch -o app/index.js --loose",
-    "test": "mocha --reporter min"
+    "start": "gulp transpile_watch",
+    "test": "mocha --reporter min",
+    "tw": "mocha --watch --reporter min"
   },
   "files": [
     "app"
@@ -34,6 +35,9 @@
     "yosay": "^0.3.0"
   },
   "devDependencies": {
+    "gulp": "^3.9.0",
+    "gulp-babel": "^5.1.0",
+    "gulp-watch": "^4.3.4",
     "mocha": "*"
   },
   "peerDependencies": {

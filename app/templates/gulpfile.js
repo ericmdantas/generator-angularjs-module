@@ -7,7 +7,7 @@ var rename = require('gulp-rename');
 var karma = require('karma').server;
 
 var _coverage = 'coverage/**/lcov.info';
-var _app = '<%= app %>.js';
+var _app = 'src/<%= app %>.js';
 var _appMin = '<%= app %>.min.js';
 var _dist = 'dist';
 

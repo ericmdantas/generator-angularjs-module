@@ -20,7 +20,7 @@ var _karma = function(config)
 
       'bower_components/angular-mocks/angular-mocks.js',
 
-      'src/<%= app %>.js',
+      'src/**/*.js',
 
       'tests/*_test.js'
     ],

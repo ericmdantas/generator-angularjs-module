@@ -51,8 +51,6 @@ var AngularJSModule = (function (_Base) {
     value: function prompting() {
 
       this.gen.sayHello.call(this);
-
-      console.log('2 -> alo! :DDDDDDDDDDDDDDDDDDD');
     }
   }, {
     key: 'writing',

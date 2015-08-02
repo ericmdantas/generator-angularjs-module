@@ -21,8 +21,6 @@ export default class AngularJSModule extends Base {
   prompting() {
 
     this.gen.sayHello.call(this);
-
-    console.log('2 -> alo! :DDDDDDDDDDDDDDDDDDD')
   }
 
     writing() {

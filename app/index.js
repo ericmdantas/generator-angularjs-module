@@ -58,12 +58,15 @@ var AngularJsModule = (function (_Base) {
       var _app = { app: this.appName };
       var _username = { username: this.githubUsername };
       var _appAndUsername = { app: _app.app, username: _username.username };
+      var _compileStyles = this.compileStyles;
 
       this.template('src/_app.js', 'src/' + _app.app + '.js', _app);
       this.template('tests/_app_test.js', 'tests/' + _app.app + '_test.js', _app);
 
+
       this.template('_package.json', 'package.json', _appAndUsername);
-      this.template('_bower.json', 'bower.json', _appAndUsername);
+
+      this.template(_compileStyles ? '_bowerWithStyles.json' : '_bower.json', 'bower.json', _appAndUsername);
       this.template('README.md', 'README.md', _appAndUsername);
 
       this.template('gulpfile.js', 'gulpfile.js', _app);
@@ -90,11 +93,16 @@ var AngularJsModule = (function (_Base) {
       }, {
         name: 'githubUsername',
         message: 'What is your username on Github?'
+      }, {
+        name: 'compileStyles',
+        message: 'Compile stylesheets?',
+        default: 'Y/n'
       }];
 
       this.prompt(prompts, (function (props) {
         this.appName = props.appName;
         this.githubUsername = props.githubUsername;
+        this.compileStyles = (/y/i).test(props.compileStyles);
 
         done();
       }).bind(this));

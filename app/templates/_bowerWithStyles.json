@@ -1,6 +1,9 @@
 {
   "name": "<%= app %>",
-  "main": "dist/<%= app %>.min.js",
+  "main": [
+    "dist/<%= app %>.min.js",
+    "dist/<%= app %>.min.css"
+  ],
   "version": "0.0.1",
   "homepage": "https://github.com/<% username %>/<%= app %>",
   "authors": ["<%= username%> <email>"],

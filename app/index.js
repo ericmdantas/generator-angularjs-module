@@ -63,7 +63,6 @@ var AngularJsModule = (function (_Base) {
       this.template('src/_app.js', 'src/' + _app.app + '.js', _app);
       this.template('tests/_app_test.js', 'tests/' + _app.app + '_test.js', _app);
 
-
       this.template('_package.json', 'package.json', _appAndUsername);
 
       this.template(_compileStyles ? '_bowerWithStyles.json' : '_bower.json', 'bower.json', _appAndUsername);
@@ -96,13 +95,12 @@ var AngularJsModule = (function (_Base) {
       }, {
         name: 'compileStyles',
         message: 'Compile stylesheets?',
-        default: 'Y/n'
+        'default': 'Y/n'
       }];
 
       this.prompt(prompts, (function (props) {
         this.appName = props.appName;
         this.githubUsername = props.githubUsername;
-        this.compileStyles = (/y/i).test(props.compileStyles);
 
         done();
       }).bind(this));

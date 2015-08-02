@@ -25,15 +25,18 @@ export default class AngularJsModule extends Base {
     }
 
     writing() {
-      var _app = {app: this.appName};
-      var _username = {username: this.githubUsername};
-      var _appAndUsername = {app: _app.app, username: _username.username};
+            var _app = { app: this.appName };
+      var _username = { username: this.githubUsername };
+      var _appAndUsername = { app: _app.app, username: _username.username };
+      var _compileStyles = this.compileStyles;
 
       this.template('src/_app.js', 'src/' + _app.app + '.js', _app);
       this.template('tests/_app_test.js', 'tests/' + _app.app + '_test.js', _app);
 
+
       this.template('_package.json', 'package.json', _appAndUsername);
-      this.template('_bower.json', 'bower.json', _appAndUsername);
+
+      this.template(_compileStyles ? '_bowerWithStyles.json' : '_bower.json', 'bower.json', _appAndUsername);
       this.template('README.md', 'README.md', _appAndUsername);
 
       this.template('gulpfile.js', 'gulpfile.js', _app);
@@ -42,7 +45,7 @@ export default class AngularJsModule extends Base {
       this.fs.copy(this.templatePath('.travis.yml'), this.destinationPath('.travis.yml'));
       this.fs.copy(this.templatePath('.gitignore'), this.destinationPath('.gitignore'));
       this.fs.copy(this.templatePath('editorconfig'), this.destinationPath('.editorconfig'));
-      this.fs.copy(this.templatePath('jshintrc'),this.destinationPath('.jshintrc'));
+      this.fs.copy(this.templatePath('jshintrc'), this.destinationPath('.jshintrc'));
     }
 
     install() {
@@ -61,6 +64,11 @@ export default class AngularJsModule extends Base {
           {
             name: 'githubUsername',
             message: 'What is your username on Github?'
+          },
+          {
+            name: 'compileStyles',
+            message: 'Compile stylesheets?',
+            default: 'Y/n'
           }
         ];
 

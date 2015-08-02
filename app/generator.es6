@@ -1,5 +1,7 @@
 export default class Generator {
   sayHello() {
-    this.log(this.yosay(`Welcome to the terrific ${this.chalk.green('AngularJS Module')} generator!`));
+    console.log('alo! :DDDDDDDDDDDDDDDDDDD')
+
+    this.log(this.yosay(`Welcome to the splendid ${this.chalk.green('AngularJS Module')} generator!`));
   }
 }

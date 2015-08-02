@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 Object.defineProperty(exports, '__esModule', {
   value: true
@@ -28,21 +28,20 @@ var _generator = require('./generator');
 
 var _generator2 = _interopRequireDefault(_generator);
 
-var AngularJsModule = (function (_Base) {
-  _inherits(AngularJsModule, _Base);
+var AngularJSModule = (function (_Base) {
+  _inherits(AngularJSModule, _Base);
 
-  function AngularJsModule(args, options, config) {
-    _classCallCheck(this, AngularJsModule);
+  function AngularJSModule(args, options, config) {
+    _classCallCheck(this, AngularJSModule);
 
-    _get(Object.getPrototypeOf(AngularJsModule.prototype), 'constructor', this).call(this, args, options, config);
-
+    _get(Object.getPrototypeOf(AngularJSModule.prototype), 'constructor', this).call(this, args, options, config);
     this.yosay = _yosay2['default'];
     this.chalk = _chalk2['default'];
 
     this.gen = new _generator2['default']();
   }
 
-  _createClass(AngularJsModule, [{
+  _createClass(AngularJSModule, [{
     key: 'initializing',
     value: function initializing() {
       this.pkg = require('../package.json');
@@ -50,7 +49,10 @@ var AngularJsModule = (function (_Base) {
   }, {
     key: 'prompting',
     value: function prompting() {
+
       this.gen.sayHello.call(this);
+
+      console.log('2 -> alo! :DDDDDDDDDDDDDDDDDDD');
     }
   }, {
     key: 'writing',
@@ -71,10 +73,10 @@ var AngularJsModule = (function (_Base) {
       this.template('gulpfile.js', 'gulpfile.js', _app);
       this.template('karma.conf.js', 'karma.conf.js', _app);
 
-      this.fs.copy(this.templatePath('.travis.yml'), this.destinationPath('.travis.yml'));
-      this.fs.copy(this.templatePath('.gitignore'), this.destinationPath('.gitignore'));
-      this.fs.copy(this.templatePath('editorconfig'), this.destinationPath('.editorconfig'));
-      this.fs.copy(this.templatePath('jshintrc'), this.destinationPath('.jshintrc'));
+      this.fs.copy(this.templatePath('_.travis.yml'), this.destinationPath('.travis.yml'));
+      this.fs.copy(this.templatePath('_.gitignore'), this.destinationPath('.gitignore'));
+      this.fs.copy(this.templatePath('_editorconfig'), this.destinationPath('.editorconfig'));
+      this.fs.copy(this.templatePath('_jshintrc'), this.destinationPath('.jshintrc'));
     }
   }, {
     key: 'install',
@@ -94,21 +96,22 @@ var AngularJsModule = (function (_Base) {
         message: 'What is your username on Github?'
       }, {
         name: 'compileStyles',
-        message: 'Compile stylesheets?',
+        message: 'Are you using css with your module?',
         'default': 'Y/n'
       }];
 
       this.prompt(prompts, (function (props) {
         this.appName = props.appName;
         this.githubUsername = props.githubUsername;
+        this.compileStyles = /y/i.test(props.compileStyles);
 
         done();
       }).bind(this));
     }
   }]);
 
-  return AngularJsModule;
+  return AngularJSModule;
 })(_yeomanGenerator.Base);
 
-exports['default'] = AngularJsModule;
+exports['default'] = AngularJSModule;
 module.exports = exports['default'];

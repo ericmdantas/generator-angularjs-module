@@ -34,7 +34,6 @@ export default class AngularJSModule extends Base {
            ? [ "dist/" + this.appName.toLowerCase() + ".min.js", "dist/" + this.appName.toLowerCase() + ".min.css" ]
            : "dist/" + this.appName.toLowerCase() + ".min.js"
       };
-      _variables.main = JSON.stringify(_variables.main);
 
       this.template('src/_app.js', 'src/' + this.appName.toLowerCase() + '.js', _variables);
       this.template('tests/_app_test.js', 'tests/' + this.appName.toLowerCase() + '_test.js', _variables)

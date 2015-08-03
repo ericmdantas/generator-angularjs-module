@@ -3,6 +3,7 @@
 import {Base} from 'yeoman-generator';
 import chalk from 'chalk';
 import yosay from 'yosay';
+import _ from 'lodash';
 import Generator from './generator';
 
 export default class AngularJSModule extends Base {
@@ -19,13 +20,13 @@ export default class AngularJSModule extends Base {
   }
 
   prompting() {
-
     this.gen.sayHello.call(this);
   }
 
     writing() {
       var _app = { app: this.appName };
       var _username = { username: this.githubUsername };
+      var _repository = { repository: this.githubRepository };
       var _appAndUsername = { app: _app.app, username: _username.username };
       var _compileStyles = this.compileStyles;
 
@@ -63,20 +64,26 @@ export default class AngularJSModule extends Base {
             message: 'What is the name of your app?'
           },
           {
+            name: 'githubRepository',
+            message: 'What is your repository name on Github?',
+            default: 'Leave empty to use your app name'
+          },
+          {
             name: 'githubUsername',
             message: 'What is your username on Github?'
           },
           {
             name: 'compileStyles',
             message: 'Are you using css with your module?',
-            default: 'Y/n'
+            default: 'Y(es)/N(o)'
           }
         ];
 
       this.prompt(prompts, function(props)
       {
-        this.appName = props.appName;
-        this.githubUsername = props.githubUsername;
+        this.appName = _.camelCase(props.appName);
+        this.githubRepository = props.githubRepository || props.appName.toLowerCase();
+        this.githubUsername = props.githubUsername.toLowerCase();
         this.compileStyles = /y(es)?/i.test(props.compileStyles);
 
         done();

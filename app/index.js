@@ -61,6 +61,7 @@ var AngularJSModule = (function (_Base) {
       var _variables = {
         app: this.appName,
         username: this.githubUsername,
+        email: this.email,
         repository: this.githubRepository,
         compileStyles: this.compileStyles,
         main: this.compileStyles ? ["dist/" + this.appName.toLowerCase() + ".min.js", "dist/" + this.appName.toLowerCase() + ".min.css"] : "dist/" + this.appName.toLowerCase() + ".min.js"

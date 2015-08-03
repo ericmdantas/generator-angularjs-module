@@ -27,6 +27,7 @@ export default class AngularJSModule extends Base {
       var _variables = {
         app: this.appName,
         username: this.githubUsername,
+        email: this.email,
         repository: this.githubRepository,
         compileStyles: this.compileStyles,
         main: this.compileStyles

@@ -5,8 +5,8 @@
     "dist/<%= app %>.min.css"
   ],
   "version": "0.0.1",
-  "homepage": "https://github.com/<% username %>/<%= app %>",
-  "authors": ["<%= username%> <email>"],
+  "homepage": "https://github.com/<%= username %>/<%= repository %>.git",
+  "authors": ["<%= username %> <<%= email %>>"],
   "description": "desc",
   "keywords": [],
   "license": "MIT",

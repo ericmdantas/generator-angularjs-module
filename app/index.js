@@ -58,24 +58,27 @@ var AngularJSModule = (function (_Base) {
   }, {
     key: 'writing',
     value: function writing() {
-      var _app = { app: this.appName };
-      var _username = { username: this.githubUsername };
-      var _appUsernameAndRepository = { app: _app.app, username: _username.username, repository: this.githubRepository };
-      var _compileStyles = this.compileStyles;
+      var _variables = {
+        app: this.appName,
+        username: this.githubUsername,
+        repository: this.githubRepository,
+        compileStyles: this.compileStyles,
+        main: this.compileStyles ? ["dist/" + this.appName.toLowerCase() + ".min.js", "dist/" + this.appName.toLowerCase() + ".min.css"] : "dist/" + this.appName.toLowerCase() + ".min.js"
+      };
 
-      this.template('src/_app.js', 'src/' + _app.app.toLowerCase() + '.js', _app);
-      this.template('tests/_app_test.js', 'tests/' + _app.app.toLowerCase() + '_test.js', _app);
-      if (_compileStyles) {
-        this.template('src/_app.css', 'src/' + _app.app.toLowerCase() + '.css', _app);
+      this.template('src/_app.js', 'src/' + _app.app.toLowerCase() + '.js', _variables);
+      this.template('tests/_app_test.js', 'tests/' + _app.app.toLowerCase() + '_test.js', _variables);
+      if (this.compileStyles) {
+        this.template('src/_app.css', 'src/' + this.appName.toLowerCase() + '.css', _variables);
       }
 
-      this.template('_package.json', 'package.json', _appUsernameAndRepository);
+      this.template('_package.json', 'package.json', _variables);
 
-      this.template(_compileStyles ? '_bowerWithStyles.json' : '_bower.json', 'bower.json', _appUsernameAndRepository);
-      this.template('README.md', 'README.md', _appUsernameAndRepository);
+      this.template('_bower.json', 'bower.json', _variables);
+      this.template('README.md', 'README.md', _variables);
 
-      this.template('gulpfile.js', 'gulpfile.js', _app);
-      this.template('karma.conf.js', 'karma.conf.js', _app);
+      this.template('gulpfile.js', 'gulpfile.js', _variables);
+      this.template('karma.conf.js', 'karma.conf.js', _variables);
 
       this.fs.copy(this.templatePath('_.travis.yml'), this.destinationPath('.travis.yml'));
       this.fs.copy(this.templatePath('_.gitignore'), this.destinationPath('.gitignore'));
@@ -96,7 +99,7 @@ var AngularJSModule = (function (_Base) {
         type: 'input',
         name: 'appName',
         message: 'What is the name of your app?',
-        'default': this.appname
+        'default': _lodash2['default'].camelCase(this.appname)
       }, {
         type: 'input',
         name: 'githubRepository',
@@ -106,6 +109,10 @@ var AngularJSModule = (function (_Base) {
         type: 'input',
         name: 'githubUsername',
         message: 'What is your username on Github?'
+      }, {
+        type: 'input',
+        name: 'email',
+        message: 'What is your email?'
       }, {
         type: 'confirm',
         name: 'compileStyles',
@@ -117,6 +124,7 @@ var AngularJSModule = (function (_Base) {
         this.appName = props.appName;
         this.githubRepository = props.githubRepository;
         this.githubUsername = props.githubUsername;
+        this.email = props.email;
         this.compileStyles = props.compileStyles;
 
         done();

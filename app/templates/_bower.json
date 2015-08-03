@@ -1,6 +1,6 @@
 {
   "name": "<%= app %>",
-  "main": "dist/*",
+  "main": <%= main %>,
   "version": "0.0.1",
   "homepage": "https://github.com/<%= username %>/<%= repository %>.git",
   "authors": ["<%= username %> <<%= email %>>"],

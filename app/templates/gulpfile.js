@@ -17,14 +17,14 @@ var _dist = 'dist';
 
 gulp.task('build-css', function () {
   return gulp.src(_styles)
-    .pipe(concat(_styleMin))
+    .pipe(concat(_styleMin.toLowerCase()))
     .pipe(cssmin())
     .pipe(gulp.dest(_dist));
 })
 
 gulp.task('build', ['unit_test', 'build-css'], function () {
   return gulp.src(_scripts)
-    .pipe(concat(_scriptMin))
+    .pipe(concat(_scriptMin.toLowerCase()))
     .pipe(uglify())
     .pipe(gulp.dest(_dist));
 })

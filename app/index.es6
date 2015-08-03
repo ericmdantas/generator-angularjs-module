@@ -29,8 +29,11 @@ export default class AngularJSModule extends Base {
       var _appAndUsername = { app: _app.app, username: _username.username };
       var _compileStyles = this.compileStyles;
 
-      this.template('src/_app.js', 'src/' + _app.app + '.js', _app);
-      this.template('tests/_app_test.js', 'tests/' + _app.app + '_test.js', _app)
+      this.template('src/_app.js', 'src/' + _app.app.toLowerCase() + '.js', _app);
+      this.template('tests/_app_test.js', 'tests/' + _app.app.toLowerCase() + '_test.js', _app)
+      if (_compileStyles) {
+        this.template('src/_app.css', 'src/' + _app.app.toLowerCase() + '.css', _app);
+      }
 
       this.template('_package.json', 'package.json', _appAndUsername);
 
@@ -74,7 +77,7 @@ export default class AngularJSModule extends Base {
       {
         this.appName = props.appName;
         this.githubUsername = props.githubUsername;
-        this.compileStyles = /y/i.test(props.compileStyles);
+        this.compileStyles = /y(es)?/i.test(props.compileStyles);
 
         done();
 

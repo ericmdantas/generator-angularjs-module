@@ -62,7 +62,7 @@ export default class AngularJSModule extends Base {
             type: 'input',
             name: 'appName',
             message: 'What is the name of your app?',
-            default: this.appname
+            default: _.camelCase(this.appname)
           },
           {
             type: 'input',

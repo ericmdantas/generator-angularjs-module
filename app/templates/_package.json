@@ -1,7 +1,7 @@
 {
   "name": "<%= app %>",
   "version": "0.0.1",
-  "main": "src/<%= app %>.js",
+  "main": <%= main %>,
   "scripts":
   {
     "test": "gulp coverage"
@@ -28,13 +28,13 @@
   "repository":
   {
     "type": "git",
-    "url": "https://github.com/<%= username %>/<%= app %>.git"
+    "url": "https://github.com/<%= username %>/<%= repository %>.git"
   },
-  "author": "<%= username %>",
+  "author": "<%= username %> <<%= email %>>",
   "license": "MIT",
   "bugs":
   {
-    "url": "https://github.com/<%= username %>/<%= app %>/issues"
+    "url": "https://github.com/<%= username %>/<%= repository %>/issues"
   },
-  "homepage": "https://github.com/<%= username %>/<%= app %>"
+  "homepage": "https://github.com/<%= username %>/<%= repository %>"
 }

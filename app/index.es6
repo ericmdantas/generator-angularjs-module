@@ -4,6 +4,7 @@ import {Base} from 'yeoman-generator';
 import chalk from 'chalk';
 import yosay from 'yosay';
 import Generator from './generator';
+import _ from 'lodash';
 
 export default class AngularJSModule extends Base {
   constructor(args, options, config) {
@@ -19,29 +20,35 @@ export default class AngularJSModule extends Base {
   }
 
   prompting() {
-
     this.gen.sayHello.call(this);
   }
 
     writing() {
-      var _app = { app: this.appName };
-      var _username = { username: this.githubUsername };
-      var _appAndUsername = { app: _app.app, username: _username.username };
-      var _compileStyles = this.compileStyles;
+      var _variables = {
+        app: this.appName,
+        username: this.githubUsername,
+        email: this.email,
+        repository: this.githubRepository,
+        compileStyles: this.compileStyles,
+        main: this.compileStyles
+           ? [ "dist/" + this.appName.toLowerCase() + ".js", "dist/" + this.appName.toLowerCase() + ".css" ]
+           : "dist/" + this.appName.toLowerCase() + ".js"
+      };
+      _variables.main = JSON.stringify(_variables.main);
 
-      this.template('src/_app.js', 'src/' + _app.app.toLowerCase() + '.js', _app);
-      this.template('tests/_app_test.js', 'tests/' + _app.app.toLowerCase() + '_test.js', _app)
-      if (_compileStyles) {
-        this.template('src/_app.css', 'src/' + _app.app.toLowerCase() + '.css', _app);
+      this.template('src/_app.js', 'src/' + this.appName.toLowerCase() + '.js', _variables);
+      this.template('tests/_app_test.js', 'tests/' + this.appName.toLowerCase() + '_test.js', _variables)
+      if (this.compileStyles) {
+        this.template('src/_app.css', 'src/' + this.appName.toLowerCase() + '.css', _variables);
       }
 
-      this.template('_package.json', 'package.json', _appAndUsername);
+      this.template('_package.json', 'package.json', _variables);
 
-      this.template(_compileStyles ? '_bowerWithStyles.json' : '_bower.json', 'bower.json', _appAndUsername);
-      this.template('README.md', 'README.md', _appAndUsername);
+      this.template('_bower.json', 'bower.json', _variables);
+      this.template('README.md', 'README.md', _variables);
 
-      this.template('gulpfile.js', 'gulpfile.js', _app);
-      this.template('karma.conf.js', 'karma.conf.js', _app);
+      this.template('gulpfile.js', 'gulpfile.js', _variables);
+      this.template('karma.conf.js', 'karma.conf.js', _variables);
 
       this.fs.copy(this.templatePath('_.travis.yml'), this.destinationPath('.travis.yml'));
       this.fs.copy(this.templatePath('_.gitignore'), this.destinationPath('.gitignore'));
@@ -59,25 +66,42 @@ export default class AngularJSModule extends Base {
       var prompts =
         [
           {
+            type: 'input',
             name: 'appName',
-            message: 'What is the name of your app?'
+            message: 'What is the name of your app?',
+            default: _.camelCase(this.appname)
           },
           {
+            type: 'input',
+            name: 'githubRepository',
+            message: 'What is your repository name on Github?',
+            default: this.appname.toLowerCase()
+          },
+          {
+            type: 'input',
             name: 'githubUsername',
             message: 'What is your username on Github?'
           },
           {
+            type: 'input',
+            name: 'email',
+            message: 'What is your email?'
+          },
+          {
+            type: 'confirm',
             name: 'compileStyles',
             message: 'Are you using css with your module?',
-            default: 'Y/n'
+            default: false
           }
         ];
 
       this.prompt(prompts, function(props)
       {
         this.appName = props.appName;
+        this.githubRepository = props.githubRepository;
         this.githubUsername = props.githubUsername;
-        this.compileStyles = /y(es)?/i.test(props.compileStyles);
+        this.email = props.email;
+        this.compileStyles = props.compileStyles;
 
         done();
 

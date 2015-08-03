@@ -14,6 +14,7 @@
   },
   "scripts": {
     "start": "gulp transpile_watch",
+    "prepublish": "gulp transpile",
     "test": "mocha --reporter min",
     "tw": "mocha --watch --reporter min"
   },

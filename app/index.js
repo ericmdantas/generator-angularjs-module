@@ -43,9 +43,6 @@ var AngularJSModule = (function (_Base) {
     this.chalk = _chalk2['default'];
 
     this.gen = new _generator2['default']();
-
-    this.argument('appname', { type: String, required: true });
-    this.appName = _lodash2['default'].camelCase(this.appname);
   }
 
   _createClass(AngularJSModule, [{
@@ -99,12 +96,12 @@ var AngularJSModule = (function (_Base) {
         type: 'input',
         name: 'appName',
         message: 'What is the name of your app?',
-        'default': this.appName
+        'default': this.appname
       }, {
         type: 'input',
         name: 'githubRepository',
         message: 'What is your repository name on Github?',
-        'default': this.appName
+        'default': this.appname.toLowerCase()
       }, {
         type: 'input',
         name: 'githubUsername',
@@ -118,7 +115,7 @@ var AngularJSModule = (function (_Base) {
 
       this.prompt(prompts, (function (props) {
         this.appName = props.appName;
-        this.githubRepository = props.githubRepository.toLowerCase();
+        this.githubRepository = props.githubRepository;
         this.githubUsername = props.githubUsername;
         this.compileStyles = props.compileStyles;
 

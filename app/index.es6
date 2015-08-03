@@ -13,9 +13,6 @@ export default class AngularJSModule extends Base {
     this.chalk = chalk;
 
     this.gen = new Generator();
-
-    this.argument('appname', { type: String, required: true });
-    this.appName = _.camelCase(this.appname);
   }
 
   initializing() {
@@ -65,13 +62,13 @@ export default class AngularJSModule extends Base {
             type: 'input',
             name: 'appName',
             message: 'What is the name of your app?',
-            default: this.appName
+            default: this.appname
           },
           {
             type: 'input',
             name: 'githubRepository',
             message: 'What is your repository name on Github?',
-            default: this.appName
+            default: this.appname.toLowerCase()
           },
           {
             type: 'input',
@@ -89,7 +86,7 @@ export default class AngularJSModule extends Base {
       this.prompt(prompts, function(props)
       {
         this.appName = props.appName;
-        this.githubRepository = props.githubRepository.toLowerCase();
+        this.githubRepository = props.githubRepository;
         this.githubUsername = props.githubUsername;
         this.compileStyles = props.compileStyles;
 

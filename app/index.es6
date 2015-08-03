@@ -3,7 +3,6 @@
 import {Base} from 'yeoman-generator';
 import chalk from 'chalk';
 import yosay from 'yosay';
-import _ from 'lodash';
 import Generator from './generator';
 
 export default class AngularJSModule extends Base {
@@ -81,9 +80,9 @@ export default class AngularJSModule extends Base {
 
       this.prompt(prompts, function(props)
       {
-        this.appName = _.camelCase(props.appName);
+        this.appName = props.appName;
         this.githubRepository = props.githubRepository || props.appName.toLowerCase();
-        this.githubUsername = props.githubUsername.toLowerCase();
+        this.githubUsername = props.githubUsername;
         this.compileStyles = /y(es)?/i.test(props.compileStyles);
 
         done();

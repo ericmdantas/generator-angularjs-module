@@ -15,8 +15,8 @@
   "scripts": {
     "start": "gulp transpile_watch",
     "prepublish": "gulp transpile",
-    "test": "mocha --reporter min",
-    "tw": "mocha --watch --reporter min"
+    "test": "mocha test/*.js --reporter min",
+    "tw": "mocha test/*.js --watch --reporter min"
   },
   "files": [
     "app"
@@ -37,10 +37,12 @@
     "yosay": "^0.3.0"
   },
   "devDependencies": {
+    "chai": "^3.2.0",
     "gulp": "^3.9.0",
     "gulp-babel": "^5.1.0",
     "gulp-watch": "^4.3.4",
-    "mocha": "*"
+    "mocha": "*",
+    "sinon": "^1.15.4"
   },
   "peerDependencies": {
     "yo": ">=1.0.0"

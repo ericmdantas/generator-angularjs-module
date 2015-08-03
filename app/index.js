@@ -28,6 +28,10 @@ var _generator = require('./generator');
 
 var _generator2 = _interopRequireDefault(_generator);
 
+var _lodash = require('lodash');
+
+var _lodash2 = _interopRequireDefault(_lodash);
+
 var AngularJSModule = (function (_Base) {
   _inherits(AngularJSModule, _Base);
 
@@ -39,6 +43,9 @@ var AngularJSModule = (function (_Base) {
     this.chalk = _chalk2['default'];
 
     this.gen = new _generator2['default']();
+
+    this.argument('appname', { type: String, required: true });
+    this.appName = _lodash2['default'].camelCase(this.appname);
   }
 
   _createClass(AngularJSModule, [{
@@ -56,8 +63,7 @@ var AngularJSModule = (function (_Base) {
     value: function writing() {
       var _app = { app: this.appName };
       var _username = { username: this.githubUsername };
-      var _repository = { repository: this.githubRepository };
-      var _appAndUsername = { app: _app.app, username: _username.username };
+      var _appUsernameAndRepository = { app: _app.app, username: _username.username, repository: this.githubRepository };
       var _compileStyles = this.compileStyles;
 
       this.template('src/_app.js', 'src/' + _app.app.toLowerCase() + '.js', _app);
@@ -66,10 +72,10 @@ var AngularJSModule = (function (_Base) {
         this.template('src/_app.css', 'src/' + _app.app.toLowerCase() + '.css', _app);
       }
 
-      this.template('_package.json', 'package.json', _appAndUsername);
+      this.template('_package.json', 'package.json', _appUsernameAndRepository);
 
-      this.template(_compileStyles ? '_bowerWithStyles.json' : '_bower.json', 'bower.json', _appAndUsername);
-      this.template('README.md', 'README.md', _appAndUsername);
+      this.template(_compileStyles ? '_bowerWithStyles.json' : '_bower.json', 'bower.json', _appUsernameAndRepository);
+      this.template('README.md', 'README.md', _appUsernameAndRepository);
 
       this.template('gulpfile.js', 'gulpfile.js', _app);
       this.template('karma.conf.js', 'karma.conf.js', _app);
@@ -90,26 +96,31 @@ var AngularJSModule = (function (_Base) {
       var done = this.async();
 
       var prompts = [{
+        type: 'input',
         name: 'appName',
-        message: 'What is the name of your app?'
+        message: 'What is the name of your app?',
+        'default': this.appName
       }, {
+        type: 'input',
         name: 'githubRepository',
         message: 'What is your repository name on Github?',
         'default': this.appName
       }, {
+        type: 'input',
         name: 'githubUsername',
         message: 'What is your username on Github?'
       }, {
+        type: 'confirm',
         name: 'compileStyles',
         message: 'Are you using css with your module?',
-        'default': 'Y(es)/N(o)'
+        'default': false
       }];
 
       this.prompt(prompts, (function (props) {
         this.appName = props.appName;
-        this.githubRepository = props.githubRepository || props.appName.toLowerCase();
+        this.githubRepository = props.githubRepository.toLowerCase();
         this.githubUsername = props.githubUsername;
-        this.compileStyles = /y(es)?/i.test(props.compileStyles);
+        this.compileStyles = props.compileStyles;
 
         done();
       }).bind(this));

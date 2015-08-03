@@ -63,8 +63,7 @@ var AngularJSModule = (function (_Base) {
         username: this.githubUsername,
         email: this.email,
         repository: this.githubRepository,
-        compileStyles: this.compileStyles,
-        main: this.compileStyles ? ["dist/" + this.appName.toLowerCase() + ".min.js", "dist/" + this.appName.toLowerCase() + ".min.css"] : "dist/" + this.appName.toLowerCase() + ".min.js"
+        compileStyles: this.compileStyles
       };
 
       this.template('src/_app.js', 'src/' + this.appName.toLowerCase() + '.js', _variables);

@@ -65,7 +65,7 @@ export default class AngularJSModule extends Base {
           {
             name: 'githubRepository',
             message: 'What is your repository name on Github?',
-            default: 'Leave empty to use your app name'
+            default: this.appName
           },
           {
             name: 'githubUsername',

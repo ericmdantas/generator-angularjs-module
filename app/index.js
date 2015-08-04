@@ -54,22 +54,22 @@ var AngularJSModule = (function (_Base) {
   }, {
     key: 'sayHello',
     value: function sayHello() {
-      this.gen.sayHello.call(this);
+      this.gen.sayHello(this);
+    }
+  }, {
+    key: 'askFor',
+    value: function askFor() {
+      this.gen.promptOptions(this);
     }
   }, {
     key: 'copyFiles',
     value: function copyFiles() {
-      this.gen.copyFiles.call(this);
+      this.gen.copyFiles(this);
     }
   }, {
     key: 'installStuff',
     value: function installStuff() {
-      this.gen.installDependencies.call(this);
-    }
-  }, {
-    key: 'prompUser',
-    value: function prompUser() {
-      this.gen.promptOptions.call(this);
+      this.gen.installDependencies(this);
     }
   }]);
 

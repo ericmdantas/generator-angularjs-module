@@ -1,51 +1,55 @@
 export default class Generator {
-
-  sayHello() {
-    this.log(this.yosay(`Welcome to the splendid ${this.chalk.green('AngularJS Module')} generator!`));
+  sayHello(generator) {
+    generator.log(generator.yosay(`Welcome to the splendid ${generator.chalk.green('AngularJS Module')} generator!`));
   }
 
-  copyFiles() {
-
+  getVariables(generator) {
     var _variables = {
-      app: this.appName,
-      username: this.githubUsername,
-      email: this.email,
-      repository: this.githubRepository,
-      compileStyles: this.compileStyles,
-      main: this.compileStyles
-        ? [ "dist/" + this.appName.toLowerCase() + ".js", "dist/" + this.appName.toLowerCase() + ".css" ]
-        : "dist/" + this.appName.toLowerCase() + ".js"
+      app: generator.appName,
+      username: generator.githubUsername,
+      email: generator.email,
+      repository: generator.githubRepository,
+      compileStyles: generator.compileStyles,
+      main: generator.compileStyles
+        ? [ "dist/" + generator.appName.toLowerCase() + ".js", "dist/" + generator.appName.toLowerCase() + ".css" ]
+        : "dist/" + generator.appName.toLowerCase() + ".js"
     };
 
     _variables.main = JSON.stringify(_variables.main);
 
-    this.template('src/_app.js', 'src/' + this.appName.toLowerCase() + '.js', _variables);
-    this.template('tests/_app_test.js', 'tests/' + this.appName.toLowerCase() + '_test.js', _variables)
+    return _variables;
+  }
 
-    if (this.compileStyles) {
-      this.template('src/_app.css', 'src/' + this.appName.toLowerCase() + '.css', _variables);
+  copyFiles(generator) {
+    var _variables = this.getVariables(generator);
+
+    generator.template('src/_app.js', 'src/' + generator.appName.toLowerCase() + '.js', _variables);
+    generator.template('tests/_app_test.js', 'tests/' + generator.appName.toLowerCase() + '_test.js', _variables)
+
+    if (generator.compileStyles) {
+      generator.template('src/_app.css', 'src/' + generator.appName.toLowerCase() + '.css', _variables);
     }
 
-    this.template('_package.json', 'package.json', _variables);
+    generator.template('_package.json', 'package.json', _variables);
 
-    this.template('_bower.json', 'bower.json', _variables);
-    this.template('README.md', 'README.md', _variables);
+    generator.template('_bower.json', 'bower.json', _variables);
+    generator.template('README.md', 'README.md', _variables);
 
-    this.template('gulpfile.js', 'gulpfile.js', _variables);
-    this.template('karma.conf.js', 'karma.conf.js', _variables);
+    generator.template('gulpfile.js', 'gulpfile.js', _variables);
+    generator.template('karma.conf.js', 'karma.conf.js', _variables);
 
-    this.fs.copy(this.templatePath('_.travis.yml'), this.destinationPath('.travis.yml'));
-    this.fs.copy(this.templatePath('_.gitignore'), this.destinationPath('.gitignore'));
-    this.fs.copy(this.templatePath('_editorconfig'), this.destinationPath('.editorconfig'));
-    this.fs.copy(this.templatePath('_jshintrc'), this.destinationPath('.jshintrc'));
+    generator.fs.copy(generator.templatePath('_.travis.yml'), generator.destinationPath('.travis.yml'));
+    generator.fs.copy(generator.templatePath('_.gitignore'), generator.destinationPath('.gitignore'));
+    generator.fs.copy(generator.templatePath('_editorconfig'), generator.destinationPath('.editorconfig'));
+    generator.fs.copy(generator.templatePath('_jshintrc'), generator.destinationPath('.jshintrc'));
   }
 
-  installDependencies() {
-    this.installDependencies({skipInstall: this.options['skip-install']});
+  installDependencies(generator) {
+    generator.installDependencies({skipInstall: generator.options['skip-install']});
   }
 
-  promptOptions() {
-    var done = this.async();
+  promptOptions(generator) {
+    var done = generator.async();
 
     var prompts =
       [
@@ -53,13 +57,13 @@ export default class Generator {
           type: 'input',
           name: 'appName',
           message: 'What is the name of your app?',
-          default: this.lodash.camelCase(this.appname)
+          default: generator.lodash.camelCase(generator.appname)
         },
         {
           type: 'input',
           name: 'githubRepository',
           message: 'What is your repository name on Github?',
-          default: this.appname.toLowerCase()
+          default: generator.appname.toLowerCase()
         },
         {
           type: 'input',
@@ -79,16 +83,15 @@ export default class Generator {
         }
       ];
 
-    this.prompt(prompts, function(props) {
-      this.appName = props.appName;
-      this.githubRepository = props.githubRepository;
-      this.githubUsername = props.githubUsername;
-      this.email = props.email;
-      this.compileStyles = props.compileStyles;
+    generator.prompt(prompts, function(props) {
+      generator.appName = props.appName;
+      generator.githubRepository = props.githubRepository;
+      generator.githubUsername = props.githubUsername;
+      generator.email = props.email;
+      generator.compileStyles = props.compileStyles;
 
       done();
 
-    }.bind(this));
-
+    }.bind(generator));
   }
 }

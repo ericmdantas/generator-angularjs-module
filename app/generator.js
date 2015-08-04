@@ -19,8 +19,9 @@ var Generator = (function () {
       this.log(this.yosay("Welcome to the splendid " + this.chalk.green('AngularJS Module') + " generator!"));
     }
   }, {
-    key: "writeFiles",
-    value: function writeFiles() {
+    key: "getVariables",
+    value: function getVariables() {
+
       var _variables = {
         app: this.appName,
         username: this.githubUsername,
@@ -29,22 +30,32 @@ var Generator = (function () {
         compileStyles: this.compileStyles,
         main: this.compileStyles ? ["dist/" + this.appName.toLowerCase() + ".js", "dist/" + this.appName.toLowerCase() + ".css"] : "dist/" + this.appName.toLowerCase() + ".js"
       };
+
       _variables.main = JSON.stringify(_variables.main);
 
-      this.template('src/_app.js', 'src/' + this.appName.toLowerCase() + '.js', _variables);
-      this.template('tests/_app_test.js', 'tests/' + this.appName.toLowerCase() + '_test.js', _variables);
+      this.variables = _variables;
+    }
+  }, {
+    key: "copyFilesWithParams",
+    value: function copyFilesWithParams() {
+      this.template('src/_app.js', 'src/' + this.appName.toLowerCase() + '.js', this.variables);
+      this.template('tests/_app_test.js', 'tests/' + this.appName.toLowerCase() + '_test.js', this.variables);
+
       if (this.compileStyles) {
-        this.template('src/_app.css', 'src/' + this.appName.toLowerCase() + '.css', _variables);
+        this.template('src/_app.css', 'src/' + this.appName.toLowerCase() + '.css', this.variables);
       }
 
-      this.template('_package.json', 'package.json', _variables);
+      this.template('_package.json', 'package.json', this.variables);
 
-      this.template('_bower.json', 'bower.json', _variables);
-      this.template('README.md', 'README.md', _variables);
+      this.template('_bower.json', 'bower.json', this.variables);
+      this.template('README.md', 'README.md', this.variables);
 
-      this.template('gulpfile.js', 'gulpfile.js', _variables);
-      this.template('karma.conf.js', 'karma.conf.js', _variables);
-
+      this.template('gulpfile.js', 'gulpfile.js', this.variables);
+      this.template('karma.conf.js', 'karma.conf.js', this.variables);
+    }
+  }, {
+    key: "copyFilesWithoutParams",
+    value: function copyFilesWithoutParams() {
       this.fs.copy(this.templatePath('_.travis.yml'), this.destinationPath('.travis.yml'));
       this.fs.copy(this.templatePath('_.gitignore'), this.destinationPath('.gitignore'));
       this.fs.copy(this.templatePath('_editorconfig'), this.destinationPath('.editorconfig'));

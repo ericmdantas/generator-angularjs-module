@@ -20,19 +20,21 @@ export default class AngularJSModule extends Base {
     this.pkg = require('../package.json');
   }
 
-  prompting() {
+  sayHello() {
     this.gen.sayHello.call(this);
   }
 
-  writing() {
-      this.gen.writeFiles.call(this);
+  copyFiles() {
+    this.gen.getVariables.call(this);
+    this.gen.copyFilesWithParams.call(this);
+    this.gen.copyFilesWithoutParams.call(this);
   }
 
   install() {
-      this.gen.installDependencies.call(this);
+    this.gen.installDependencies.call(this);
   }
 
   prompUser() {
-      this.gen.promptOptions.call(this);
+    this.gen.promptOptions.call(this);
   }
 }

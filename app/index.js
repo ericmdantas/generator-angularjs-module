@@ -52,14 +52,16 @@ var AngularJSModule = (function (_Base) {
       this.pkg = require('../package.json');
     }
   }, {
-    key: 'prompting',
-    value: function prompting() {
+    key: 'sayHello',
+    value: function sayHello() {
       this.gen.sayHello.call(this);
     }
   }, {
-    key: 'writing',
-    value: function writing() {
-      this.gen.writeFiles.call(this);
+    key: 'copyFiles',
+    value: function copyFiles() {
+      this.gen.getVariables.call(this);
+      this.gen.copyFilesWithParams.call(this);
+      this.gen.copyFilesWithoutParams.call(this);
     }
   }, {
     key: 'install',

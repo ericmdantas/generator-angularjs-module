@@ -14,7 +14,10 @@ describe('angularjs-module:app', function() {
         .withOptions({ 'skip-install': true })
         .withPrompts({
           appName: 'my-app',
-          usernameGithub: 'someuser'
+          githubUsername: 'someuser',
+          githubRepository: 'repository',
+          email: 'email@email.com',
+          compileStyles: true
         })
         .on('end', done);
     });

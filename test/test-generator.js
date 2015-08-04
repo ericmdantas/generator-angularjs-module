@@ -39,7 +39,38 @@ describe('test-generator', function() {
     });
   });
 
-  describe('writeFiles', function() {
+  describe('getVariables', function() {
+    var _fakeUserInput = {
+      appName: 'app',
+      githubUsername: 'username',
+      email: 'email@email.com',
+      githubRepository: 'repository',
+      compileStyles: true,
+      main: [ "dist/app.js", "dist/app.css"]
+    };
+
+    it('should get variables correctly', function() {
+      _generator.getVariables.call(_fakeUserInput);
+
+      Object.keys(_fakeUserInput).forEach(function(k, v) {
+        expect(_generator[k]).to.equal(v);
+      })
+    })
+  })
+
+  describe('copyFilesWithParams', function() {
+
+  })
+
+  describe('copyFilesWithoutParams', function() {
+
+  })
+
+  describe('installDependencies', function() {
+
+  })
+
+  describe('promptOptions', function() {
 
   })
 });

@@ -59,13 +59,11 @@ var AngularJSModule = (function (_Base) {
   }, {
     key: 'copyFiles',
     value: function copyFiles() {
-      this.gen.getVariables.call(this);
-      this.gen.copyFilesWithParams.call(this);
-      this.gen.copyFilesWithoutParams.call(this);
+      this.gen.copyFiles.call(this);
     }
   }, {
-    key: 'install',
-    value: function install() {
+    key: 'installStuff',
+    value: function installStuff() {
       this.gen.installDependencies.call(this);
     }
   }, {

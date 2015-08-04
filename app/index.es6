@@ -25,12 +25,10 @@ export default class AngularJSModule extends Base {
   }
 
   copyFiles() {
-    this.gen.getVariables.call(this);
-    this.gen.copyFilesWithParams.call(this);
-    this.gen.copyFilesWithoutParams.call(this);
+    this.gen.copyFiles.call(this);
   }
 
-  install() {
+  installStuff() {
     this.gen.installDependencies.call(this);
   }
 

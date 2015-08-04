@@ -21,18 +21,18 @@ export default class AngularJSModule extends Base {
   }
 
   sayHello() {
-    this.gen.sayHello.call(this);
+    this.gen.sayHello(this);
+  }
+
+  askFor() {
+    this.gen.promptOptions(this);
   }
 
   copyFiles() {
-    this.gen.copyFiles.call(this);
+    this.gen.copyFiles(this);
   }
 
   installStuff() {
-    this.gen.installDependencies.call(this);
-  }
-
-  prompUser() {
-    this.gen.promptOptions.call(this);
+    this.gen.installDependencies(this);
   }
 }

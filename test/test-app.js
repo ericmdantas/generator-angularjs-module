@@ -13,11 +13,11 @@ describe('angularjs-module:app', function() {
         .inDir(path.join(os.tmpdir(), './temp-test'))
         .withOptions({ 'skip-install': true })
         .withPrompts({
-          appName: 'my-app',
-          githubUsername: 'someuser',
-          githubRepository: 'repository',
-          email: 'email@email.com',
-          compileStyles: true
+          "appName": 'my-app',
+          "githubUsername": 'someuser',
+          "githubRepository": 'repository',
+          "email": 'email@email.com',
+          "compileStyles": true
         })
         .on('end', done);
     });

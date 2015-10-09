@@ -101,7 +101,7 @@ describe('test-generator', function() {
       expect(response.email).to.equals(userInput.email);
       expect(response.repository).to.equals(userInput.githubRepository);
       expect(response.compileStyles).to.be.truthy;
-      expect(response.main).to.equals('["dist/app.js","dist/app.css"]');
+      expect(response.main).to.equals('["dist/app.min.js","dist/app.min.css"]');
     });
 
     it('should get variables correctly when is not compiling styles', function() {
@@ -113,7 +113,7 @@ describe('test-generator', function() {
       expect(response.email).to.equals(userInput.email);
       expect(response.repository).to.equals(userInput.githubRepository);
       expect(response.compileStyles).to.be.truthy;
-      expect(response.main).to.equals('"dist/app.js"');
+      expect(response.main).to.equals('"dist/app.min.js"');
     });
   });
 

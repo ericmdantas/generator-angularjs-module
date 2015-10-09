@@ -27,7 +27,7 @@ var Generator = (function () {
         email: generator.email,
         repository: generator.githubRepository,
         compileStyles: generator.compileStyles,
-        main: generator.compileStyles ? ["dist/" + generator.appName.toLowerCase() + ".js", "dist/" + generator.appName.toLowerCase() + ".css"] : "dist/" + generator.appName.toLowerCase() + ".js"
+        main: generator.compileStyles ? ["dist/" + generator.appName.toLowerCase() + ".min.js", "dist/" + generator.appName.toLowerCase() + ".min.css"] : "dist/" + generator.appName.toLowerCase() + ".min.js"
       };
 
       _variables.main = JSON.stringify(_variables.main);

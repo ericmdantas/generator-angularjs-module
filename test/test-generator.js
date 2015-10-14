@@ -1,14 +1,14 @@
-var Generator = require('../app/generator'),
-  chai = require('chai'),
-  sinon = require('sinon'),
-  sinonChai = require('sinon-chai'),
-  expect = chai.expect;
+import Generator from '../app/generator';
+import chai, {expect} from 'chai';
+import sinon from 'sinon';
+import sinonChai from 'sinon-chai';
+
 chai.use(sinonChai);
 
-describe('test-generator', function() {
+describe('test-generator', () => {
   var _generator, stub, doneStub;
 
-  beforeEach(function() {
+  beforeEach(() => {
     _generator = new Generator();
     stub = {
       appname: 'app name',
@@ -37,10 +37,8 @@ describe('test-generator', function() {
     stub.async.returns(doneStub);
   });
 
-  describe('sayHello', function() {
-
-
-    it('should say hello correctly', function() {
+  describe('sayHello', () => {
+    it('should say hello correctly', () => {
       _generator.sayHello(stub);
 
       expect(stub.log).to.have.been.called;
@@ -49,8 +47,8 @@ describe('test-generator', function() {
     });
   });
 
-  describe('askFor', function () {
-    it('should ask a few questions to user', function () {
+  describe('askFor', () => {
+    it('should ask a few questions to user', () => {
       _generator.promptOptions(stub);
 
       stub.prompt.withArgs(sinon.match.array, sinon.match.func).callArgWith(1, {
@@ -74,17 +72,17 @@ describe('test-generator', function() {
     });
   });
 
-  describe('installDependencies', function() {
-    it('should say hello correctly', function() {
+  describe('installDependencies', () => {
+    it('should say hello correctly', () => {
       _generator.installDependencies(stub);
 
-      expect(stub.installDependencies).to.have.been.calledWithMatch(sinon.match(function (parametro) {
+      expect(stub.installDependencies).to.have.been.calledWithMatch(sinon.match((parametro) => {
         return !!parametro.skipInstall;
       }));
     });
   });
 
-  describe('getVariables', function() {
+  describe('getVariables', () => {
     var userInput = {
       appName: 'app',
       githubUsername: 'username',
@@ -93,7 +91,7 @@ describe('test-generator', function() {
       compileStyles: true
     };
 
-    it('should get variables correctly when compiling styles', function() {
+    it('should get variables correctly when compiling styles', () => {
       var response = _generator.getVariables(userInput);
 
       expect(response.app).to.equals(userInput.appName);
@@ -104,7 +102,7 @@ describe('test-generator', function() {
       expect(response.main).to.equals('["dist/app.min.js","dist/app.min.css"]');
     });
 
-    it('should get variables correctly when is not compiling styles', function() {
+    it('should get variables correctly when is not compiling styles', () => {
       userInput.compileStyles = false;
       var response = _generator.getVariables(userInput);
 
@@ -117,8 +115,8 @@ describe('test-generator', function() {
     });
   });
 
-  describe('copyFiles', function() {
-    beforeEach(function () {
+  describe('copyFiles', () => {
+    beforeEach(() => {
       stub.appName = 'app';
       stub.githubUsername = 'username';
       stub.email = 'email@email.com';
@@ -126,7 +124,7 @@ describe('test-generator', function() {
       stub.compileStyles = true;
     });
 
-    it('should copy files correctly', function () {
+    it('should copy files correctly', () => {
       _generator.copyFiles(stub);
 
       expect(stub.template).to.have.been.calledWith('src/_app.js', 'src/app.js', sinon.match.object);
@@ -141,6 +139,5 @@ describe('test-generator', function() {
       expect(stub.destinationPath.callCount).to.equals(4);
       expect(stub.fs.copy.callCount).to.equals(4);
     });
-
   });
 });

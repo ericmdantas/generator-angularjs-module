@@ -13,6 +13,7 @@
     ".gitignore",
     "node_modules",
     "tests",
+    "src",
     "LICENSE",
     "bower_components",
     "coverage",

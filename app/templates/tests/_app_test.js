@@ -1,20 +1,16 @@
 "use strict";
 
-describe('my awesome app', function()
-{
+describe('my awesome app', function() {
   var _GreetingService;
 
   beforeEach(module('<%= app %>'));
 
-  beforeEach(inject(function($injector)
-  {
+  beforeEach(inject(function($injector) {
     _GreetingService = $injector.get('GreetingService');
   }));
 
-  describe('sayHello', function()
-  {
-    it('should call the say hello function', function()
-    {
+  describe('sayHello', function() {
+    it('should call the say hello function', function() {
       spyOn(_GreetingService, 'sayHello').and.callFake(angular.noop);
 
       _GreetingService.sayHello();
@@ -22,8 +18,7 @@ describe('my awesome app', function()
       expect(_GreetingService.sayHello).toHaveBeenCalled();
     });
 
-    it('should say hello', function()
-    {
+    it('should say hello', function() {
         expect(_GreetingService.sayHello()).toEqual("hello there!");
     });
   });

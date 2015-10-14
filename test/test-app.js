@@ -1,13 +1,11 @@
-'use strict';
+import path from 'path';
+import {assert} from 'yeoman-generator';
+import {test as helpers} from 'yeoman-generator';
+import os from 'os';
 
-var path = require('path');
-var assert = require('yeoman-generator').assert;
-var helpers = require('yeoman-generator').test;
-var os = require('os');
-
-describe('angularjs-module:app', function() {
-  describe('main generator file creation', function() {
-    before(function(done) {
+describe('angularjs-module:app', () => {
+  describe('main generator file creation', () => {
+    before((done) => {
       helpers
         .run(path.join(__dirname, '../app'))
         .inDir(path.join(os.tmpdir(), './temp-test'))
@@ -22,7 +20,7 @@ describe('angularjs-module:app', function() {
         .on('end', done);
     });
 
-    it('creates files', function() {
+    it('creates files', () => {
       var _fileArray = ['bower.json', 'package.json', '.editorconfig', '.travis.yml', 'gulpfile.js',
                         'README.md', '.jshintrc', '.gitignore', 'karma.conf.js', 'src/my-app.js', 'tests/my-app_test.js'];
 

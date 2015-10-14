@@ -40,11 +40,11 @@ gulp.task('unit_test', function (done) {
     browsers: ['PhantomJS']
   };
 
-  karma.start(_opts, done);
+  return karma.start(_opts, done);
 })
 
 gulp.task('coverage', ['unit_test'], function () {
-  gulp
-    .src(_coverage)
-    .pipe(coveralls());
+  return gulp
+          .src(_coverage)
+          .pipe(coveralls());
 })

@@ -15,8 +15,8 @@
   "scripts": {
     "start": "gulp transpile_watch",
     "prepublish": "gulp transpile",
-    "test": "mocha test/**/*.js --reporter min",
-    "tw": "mocha test/*.js --watch --reporter min"
+    "test": "mocha --reporter min --require babel/register",
+    "tw": "mocha --watch --reporter min --require babel/register"
   },
   "files": [
     "app"
@@ -30,16 +30,17 @@
     "angular2-module"
   ],
   "dependencies": {
-    "babel": "^4.7.16",
     "chalk": "^0.5.0",
     "lodash": "^3.10.0",
     "yeoman-generator": "^0.18.0",
     "yosay": "^0.3.0"
   },
   "devDependencies": {
+    "babel": "^5.8.23",
+    "babel-core": "^5.8.25",
     "chai": "^3.2.0",
     "gulp": "^3.9.0",
-    "gulp-babel": "^5.1.0",
+    "gulp-babel": "^5.2.1",
     "gulp-watch": "^4.3.4",
     "mocha": "*",
     "sinon": "^1.14.1",

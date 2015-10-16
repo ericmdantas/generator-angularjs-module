@@ -1,0 +1,41 @@
+{
+  "name": "<%= app %>",
+  "version": "0.0.1",
+  "main": <%= main %>,
+  "scripts": {
+    "test": "gulp coverage"
+  },
+  "dependencies": {
+    "angular2": "*"
+  },
+  "devDependencies": {
+    "babel": "^5.8.23",
+    "babel-core": "^5.8.25",
+    "gulp": "^3.9.0",
+    "gulp-concat": "^2.5.2",
+    "gulp-coveralls": "^0.1.4",
+    "gulp-cssmin": "^0.1.7",
+    "gulp-rename": "^1.2.2",
+    "gulp-uglify": "^1.2.0",
+    "jasmine-core": "^2.3.0",
+    "karma": "^0.12.31",
+    "karma-chrome-launcher": "^0.1.8",
+    "karma-coverage": "^0.3.1",
+    "karma-firefox-launcher": "^0.1.4",
+    "karma-ie-launcher": "^0.1.5",
+    "karma-jasmine": "^0.3.5",
+    "karma-opera-launcher": "^0.1.0",
+    "karma-phantomjs-launcher": "^0.1.4",
+    "karma-safari-launcher": "^0.1.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/<%= username %>/<%= repository %>.git"
+  },
+  "author": "<%= username %> <<%= email %>>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/<%= username %>/<%= repository %>/issues"
+  },
+  "homepage": "https://github.com/<%= username %>/<%= repository %>"
+}

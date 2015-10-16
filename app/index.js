@@ -39,6 +39,7 @@ var AngularJSModule = (function (_Base) {
     _classCallCheck(this, AngularJSModule);
 
     _get(Object.getPrototypeOf(AngularJSModule.prototype), 'constructor', this).call(this, args, options, config);
+
     this.yosay = _yosay2['default'];
     this.chalk = _chalk2['default'];
     this.lodash = _lodash2['default'];

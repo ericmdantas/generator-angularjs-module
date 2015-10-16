@@ -12,6 +12,7 @@ describe('test-generator', () => {
     _generator = new Generator();
     stub = {
       appname: 'app name',
+      ngVersion: "ng1",
       log: sinon.spy(),
       yosay: sinon.spy(),
       chalk: {
@@ -54,6 +55,7 @@ describe('test-generator', () => {
       stub.prompt.withArgs(sinon.match.array, sinon.match.func).callArgWith(1, {
         "appName": 'my-app',
         "githubUsername": 'someuser',
+        "ngVersion": 'ng1',
         "githubRepository": 'repository',
         "email": 'email@email.com',
         "compileStyles": true
@@ -68,6 +70,7 @@ describe('test-generator', () => {
       expect(stub.githubUsername).to.equal('someuser');
       expect(stub.githubRepository).to.equal('repository');
       expect(stub.email).to.equal('email@email.com');
+      expect(stub.ngVersion).to.equal('ng1');
       expect(stub.compileStyles).to.equal(true);
     });
   });
@@ -115,11 +118,39 @@ describe('test-generator', () => {
     });
   });
 
-  describe('copyFiles', () => {
+  describe('copyFiles - ng1', () => {
     beforeEach(() => {
       stub.appName = 'app';
       stub.githubUsername = 'username';
       stub.email = 'email@email.com';
+      stub.repository = 'repository';
+      stub.ngVersion = 'ng1';
+      stub.compileStyles = true;
+    });
+
+    it('should copy files correctly', () => {
+      _generator.copyFiles(stub);
+
+      expect(stub.template).to.have.been.calledWith('ng1/src/_app.js', 'src/app.js', sinon.match.object);
+      expect(stub.template).to.have.been.calledWith('ng1/tests/_app_test.js', 'tests/app_test.js', sinon.match.object);
+      expect(stub.template).to.have.been.calledWith('ng1/src/_app.css', 'src/app.css', sinon.match.object);
+      expect(stub.template).to.have.been.calledWith('ng1/_package.json', 'package.json', sinon.match.object);
+      expect(stub.template).to.have.been.calledWith('ng1/_bower.json', 'bower.json', sinon.match.object);
+      expect(stub.template).to.have.been.calledWith('ng1/README.md', 'README.md', sinon.match.object);
+      expect(stub.template).to.have.been.calledWith('ng1/gulpfile.js', 'gulpfile.js', sinon.match.object);
+      expect(stub.template).to.have.been.calledWith('ng1/karma.conf.js', 'karma.conf.js', sinon.match.object);
+      expect(stub.templatePath.callCount).to.equals(4);
+      expect(stub.destinationPath.callCount).to.equals(4);
+      expect(stub.fs.copy.callCount).to.equals(4);
+    });
+  });
+
+  describe('copyFiles - ng2', () => {
+    beforeEach(() => {
+      stub.appName = 'app';
+      stub.githubUsername = 'username';
+      stub.email = 'email@email.com';
+      stub.ngVersion = 'ng2';
       stub.repository = 'repository';
       stub.compileStyles = true;
     });
@@ -127,17 +158,17 @@ describe('test-generator', () => {
     it('should copy files correctly', () => {
       _generator.copyFiles(stub);
 
-      expect(stub.template).to.have.been.calledWith('src/_app.js', 'src/app.js', sinon.match.object);
-      expect(stub.template).to.have.been.calledWith('tests/_app_test.js', 'tests/app_test.js', sinon.match.object);
-      expect(stub.template).to.have.been.calledWith('src/_app.css', 'src/app.css', sinon.match.object);
-      expect(stub.template).to.have.been.calledWith('_package.json', 'package.json', sinon.match.object);
-      expect(stub.template).to.have.been.calledWith('_bower.json', 'bower.json', sinon.match.object);
-      expect(stub.template).to.have.been.calledWith('README.md', 'README.md', sinon.match.object);
-      expect(stub.template).to.have.been.calledWith('gulpfile.js', 'gulpfile.js', sinon.match.object);
-      expect(stub.template).to.have.been.calledWith('karma.conf.js', 'karma.conf.js', sinon.match.object);
-      expect(stub.templatePath.callCount).to.equals(4);
-      expect(stub.destinationPath.callCount).to.equals(4);
-      expect(stub.fs.copy.callCount).to.equals(4);
+      expect(stub.template).to.have.been.calledWith('ng2/src/_app.ts', 'src/app.ts', sinon.match.object);
+      expect(stub.template).to.have.been.calledWith('ng2/tests/_app_test.ts', 'tests/app_test.ts', sinon.match.object);
+      expect(stub.template).to.have.been.calledWith('ng2/src/_app.css', 'src/app.css', sinon.match.object);
+      expect(stub.template).to.have.been.calledWith('ng2/src/_app.html', 'src/app.html', sinon.match.object);
+      expect(stub.template).to.have.been.calledWith('ng2/_package.json', 'package.json', sinon.match.object);
+      expect(stub.template).to.have.been.calledWith('ng2/README.md', 'README.md', sinon.match.object);
+      expect(stub.template).to.have.been.calledWith('ng2/gulpfile.babel.js', 'gulpfile.babel.js', sinon.match.object);
+      expect(stub.template).to.have.been.calledWith('ng2/karma.conf.js', 'karma.conf.js', sinon.match.object);
+      expect(stub.templatePath.callCount).to.equals(6);
+      expect(stub.destinationPath.callCount).to.equals(6);
+      expect(stub.fs.copy.callCount).to.equals(6);
     });
   });
 });

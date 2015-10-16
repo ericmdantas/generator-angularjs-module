@@ -7,6 +7,7 @@ import _ from 'lodash';
 export default class AngularJSModule extends Base {
   constructor(args, options, config) {
     super(args, options, config);
+
     this.yosay = yosay;
     this.chalk = chalk;
     this.lodash = _;

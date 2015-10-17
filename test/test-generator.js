@@ -137,7 +137,7 @@ describe('test-generator', () => {
       expect(stub.template).to.have.been.calledWith('ng1/_package.json', 'package.json', sinon.match.object);
       expect(stub.template).to.have.been.calledWith('ng1/_bower.json', 'bower.json', sinon.match.object);
       expect(stub.template).to.have.been.calledWith('ng1/README.md', 'README.md', sinon.match.object);
-      expect(stub.template).to.have.been.calledWith('ng1/gulpfile.js', 'gulpfile.js', sinon.match.object);
+      expect(stub.template).to.have.been.calledWith('ng1/gulpfile.babel.js', 'gulpfile.babel.js', sinon.match.object);
       expect(stub.template).to.have.been.calledWith('ng1/karma.conf.js', 'karma.conf.js', sinon.match.object);
     });
   });

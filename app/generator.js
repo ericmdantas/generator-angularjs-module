@@ -50,7 +50,7 @@ var Generator = (function () {
       generator.template('ng1/_bower.json', 'bower.json', variables);
       generator.template('ng1/README.md', 'README.md', variables);
 
-      generator.template('ng1/gulpfile.js', 'gulpfile.js', variables);
+      generator.template('ng1/gulpfile.babel.js', 'gulpfile.babel.js', variables);
       generator.template('ng1/karma.conf.js', 'karma.conf.js', variables);
 
       generator.fs.copy(generator.templatePath('ng1/_.travis.yml'), generator.destinationPath('.travis.yml'));

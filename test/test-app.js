@@ -27,7 +27,7 @@ describe('angularjs-module:app', () => {
                         'package.json',
                         '.editorconfig',
                         '.travis.yml',
-                        'gulpfile.js',
+                        'gulpfile.babel.js',
                         'README.md',
                         '.jshintrc',
                         '.gitignore',

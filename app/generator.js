@@ -102,17 +102,16 @@ var Generator = (function () {
     key: "promptOptions",
     value: function promptOptions(generator) {
       var done = generator.async();
-
       var prompts = [{
         type: 'input',
         name: 'appName',
         message: 'What is the name of your app?',
-        "default": generator.lodash.camelCase(generator.appname)
+        "default": generator.lodash.kebabCase(generator.appname)
       }, {
         type: 'input',
         name: 'githubRepository',
         message: 'What is your repository name on Github?',
-        "default": generator.appname.toLowerCase()
+        "default": generator.lodash.kebabCase(generator.appname.toLowerCase())
       }, {
         type: 'input',
         name: 'githubUsername',

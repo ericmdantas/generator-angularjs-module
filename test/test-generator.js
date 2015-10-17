@@ -19,7 +19,8 @@ describe('test-generator', () => {
         green: sinon.spy()
       },
       lodash: {
-        camelCase: sinon.spy()
+        camelCase: sinon.spy(),
+        kebabCase: sinon.spy()
       },
       prompt: sinon.spy(),
       async: sinon.stub(),
@@ -62,7 +63,7 @@ describe('test-generator', () => {
       });
 
       expect(stub.async).to.have.been.called;
-      expect(stub.lodash.camelCase).to.have.been.calledWith(stub.appname);
+      expect(stub.lodash.kebabCase).to.have.been.calledWith(stub.appname);
       expect(stub.prompt).to.have.been.calledWith(sinon.match.array, sinon.match.func);
       expect(doneStub).to.have.been.called;
 

@@ -139,9 +139,6 @@ describe('test-generator', () => {
       expect(stub.template).to.have.been.calledWith('ng1/README.md', 'README.md', sinon.match.object);
       expect(stub.template).to.have.been.calledWith('ng1/gulpfile.js', 'gulpfile.js', sinon.match.object);
       expect(stub.template).to.have.been.calledWith('ng1/karma.conf.js', 'karma.conf.js', sinon.match.object);
-      expect(stub.templatePath.callCount).to.equals(4);
-      expect(stub.destinationPath.callCount).to.equals(4);
-      expect(stub.fs.copy.callCount).to.equals(4);
     });
   });
 
@@ -166,9 +163,6 @@ describe('test-generator', () => {
       expect(stub.template).to.have.been.calledWith('ng2/README.md', 'README.md', sinon.match.object);
       expect(stub.template).to.have.been.calledWith('ng2/gulpfile.babel.js', 'gulpfile.babel.js', sinon.match.object);
       expect(stub.template).to.have.been.calledWith('ng2/karma.conf.js', 'karma.conf.js', sinon.match.object);
-      expect(stub.templatePath.callCount).to.equals(6);
-      expect(stub.destinationPath.callCount).to.equals(6);
-      expect(stub.fs.copy.callCount).to.equals(6);
     });
   });
 });

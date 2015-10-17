@@ -32,7 +32,7 @@ gulp.task('build', ['unit_test', 'build-css'], () => {
 });
 
 gulp.task('unit_test', (done) => {
-  var _opts = {
+  let _opts = {
     configFile: __dirname + '/karma.conf.js',
     singleRun: true,
     browsers: ['PhantomJS']

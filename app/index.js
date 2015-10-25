@@ -63,6 +63,16 @@ var AngularJSModule = (function (_Base) {
       this.gen.promptOptions(this);
     }
   }, {
+    key: 'askForCss',
+    value: function askForCss() {
+      this.gen.promptOptionsCssNg1(this);
+    }
+  }, {
+    key: 'askForWorker',
+    value: function askForWorker() {
+      this.gen.promptOptionsWorker(this);
+    }
+  }, {
     key: 'copyFiles',
     value: function copyFiles() {
       this.gen.copyFiles(this);

@@ -44,7 +44,13 @@ export default class Generator {
   }
 
   _copyFilesNg2(generator, variables) {
-    generator.template('ng2/src/_app.ts', 'src/' + generator.appName.toLowerCase() + '.ts', variables);
+    if (generator.ng2worker) {
+      generator.template('ng2/src/_app_worker.ts', 'src/' + generator.appName.toLowerCase() + '.ts', variables);
+    }
+    else {
+      generator.template('ng2/src/_app.ts', 'src/' + generator.appName.toLowerCase() + '.ts', variables);
+    }
+
     generator.template('ng2/src/_app.html', 'src/' + generator.appName.toLowerCase() + '.html', variables);
     generator.template('ng2/src/_app.css', 'src/' + generator.appName.toLowerCase() + '.css', variables);
     generator.template('ng2/tests/_app_test.ts', 'tests/' + generator.appName.toLowerCase() + '_test.ts', variables)
@@ -110,22 +116,55 @@ export default class Generator {
           message: 'What version of Angular do you want to use?',
           choices: ["ng1", "ng2"],
           default: 0
-        },
-        {
-          type: 'confirm',
-          name: 'compileStyles',
-          message: 'Are you using css with your module?',
-          default: false
         }
       ];
 
-    generator.prompt(prompts, (props) => {
-      generator.appName = props.appName;
-      generator.githubRepository = props.githubRepository;
-      generator.githubUsername = props.githubUsername;
-      generator.email = props.email;
-      generator.ngVersion = props.ngVersion;
-      generator.compileStyles = props.compileStyles;
+    generator.prompt(prompts, (prop) => {
+      generator.appName = prop.appName;
+      generator.githubRepository = prop.githubRepository;
+      generator.githubUsername = prop.githubUsername;
+      generator.email = prop.email;
+      generator.ngVersion = prop.ngVersion;
+
+      done();
+    });
+  }
+
+  promptOptionsCssNg1(generator) {
+    let done = generator.async();
+
+    let _prompts = [{
+          type: 'confirm',
+          name: 'compileStyles',
+          message: 'Are you using css with your module?',
+          when() {
+            return generator.ngVersion === "ng1";
+          },
+          default: false
+    }];
+
+    generator.prompt(_prompts, (prop) => {
+      generator.compileStyles = prop.compileStyles;
+
+      done();
+    });
+  }
+
+  promptOptionsWorker(generator) {
+    let done = generator.async();
+
+    let _prompts = [{
+          type: 'confirm',
+          name: 'ng2worker',
+          message: 'Are you using workers with ng2?',
+          when() {
+            return generator.ngVersion === 'ng2'
+          },
+          default: false
+    }];
+
+    generator.prompt(_prompts, (prop) => {
+      generator.ng2worker = prop.ng2worker;
 
       done();
     });

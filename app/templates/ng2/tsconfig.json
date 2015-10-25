@@ -9,6 +9,7 @@
         "src/*.ts"
     ],
     "files": [
-        "src/_app.ts"
+        "src/_app.ts",
+        "src/_app_worker.ts"
     ]
 }

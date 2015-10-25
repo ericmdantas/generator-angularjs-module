@@ -27,6 +27,14 @@ export default class AngularJSModule extends Base {
     this.gen.promptOptions(this);
   }
 
+  askForCss() {
+    this.gen.promptOptionsCssNg1(this);
+  }
+
+  askForWorker() {
+    this.gen.promptOptionsWorker(this);
+  }
+
   copyFiles() {
     this.gen.copyFiles(this);
   }

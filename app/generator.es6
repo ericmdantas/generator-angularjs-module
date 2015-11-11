@@ -31,7 +31,10 @@ export default class Generator {
 
     generator.template('ng1/_package.json', 'package.json', variables);
 
-    generator.template('ng1/_bower.json', 'bower.json', variables);
+    if (generator.ngVersion === "ng1") {
+        generator.template('ng1/_bower.json', 'bower.json', variables);
+    }
+
     generator.template('ng1/README.md', 'README.md', variables);
 
     generator.template('ng1/gulpfile.babel.js', 'gulpfile.babel.js', variables);
@@ -81,7 +84,7 @@ export default class Generator {
   }
 
   installDependencies(generator) {
-    generator.installDependencies({skipInstall: generator.options['skip-install']});
+    generator.installDependencies({skipInstall: generator.options['skip-install'], npm: true, bower: generator.ngVersion === "ng1"});
   }
 
   promptOptions(generator) {

@@ -15,7 +15,7 @@
   "scripts": {
     "start": "gulp transpile_watch",
     "prepublish": "gulp transpile",
-    "test": "mocha --reporter min --require babel/register",
+    "test": "gulp transpile && mocha --reporter min --require babel/register",
     "tw": "mocha --watch --reporter min --require babel/register"
   },
   "files": [

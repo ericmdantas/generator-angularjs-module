@@ -64,6 +64,7 @@ export default class Generator {
 
     generator.template('ng2/gulpfile.babel.js', 'gulpfile.babel.js', variables);
     generator.template('ng2/karma.conf.js', 'karma.conf.js', variables);
+    generator.template('ng2/karma-test-shim.js', 'karma-test-shim.js');
 
     generator.fs.copy(generator.templatePath('ng2/tsconfig.json'), generator.destinationPath('tsconfig.json'));
     generator.fs.copy(generator.templatePath('ng2/tsd.json'), generator.destinationPath('tsd.json'));

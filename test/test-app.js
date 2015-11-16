@@ -65,6 +65,7 @@ describe('angularjs-module:app', () => {
                         '.jshintrc',
                         '.gitignore',
                         'karma.conf.js',
+                        'karma-test-shim.js',
                         'src/my-app.ts',
                         'tests/my-app_test.ts'];
 

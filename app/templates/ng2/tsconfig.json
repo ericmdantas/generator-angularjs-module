@@ -1,15 +1,15 @@
 {
     "compilerOptions": {
-        "module": "commonjs",
+        "module": "system",
+        "moduleResolution": "node",
         "target": "es5",
+        "sourceMap": true,
         "emitDecoratorMetadata": true,
-        "experimentalDecorators": true
+        "experimentalDecorators": true,
+        "noImplicitAny": false
     },
-    "filesGlob": [
-        "src/*.ts"
-    ],
-    "files": [
-        "src/_app.ts",
-        "src/_app_worker.ts"
+    "exclude": [
+      "node_modules",
+      "typings"
     ]
 }

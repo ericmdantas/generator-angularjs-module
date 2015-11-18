@@ -51,6 +51,9 @@
     "sinon": "^1.14.1",
     "sinon-chai": "^2.7.0"
   },
+  "babel": {
+    "plugins": ["transform-es2015-modules-commonjs"]
+  },
   "bugs": {
     "url": "https://github.com/ericmdantas/generator-angularjs-module/issues"
   },

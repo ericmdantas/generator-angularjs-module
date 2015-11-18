@@ -10,13 +10,12 @@
   },
   "author": "Eric Mendes Dantas <ericdantas0@gmail.com> (https://github.com/ericmdantas)",
   "engines": {
-    "node": ">=0.10.0"
+    "node": "stable"
   },
   "scripts": {
-    "start": "gulp transpile_watch",
-    "prepublish": "gulp transpile",
-    "test": "gulp transpile && mocha --reporter min --require babel/register",
-    "tw": "mocha --watch --reporter min --require babel/register"
+    "start": "gulp compile",
+    "prepublish": "gulp compile",
+    "test": "gulp compile && mocha --reporter min --require babel-core/register"
   },
   "files": [
     "app"
@@ -41,12 +40,14 @@
     "yosay": "^0.3.0"
   },
   "devDependencies": {
-    "babel": "^5.8.23",
-    "babel-core": "^5.8.25",
+    "babel": "^6.1.18",
+    "babel-cli": "^6.1.18",
+    "babel-core": "^6.1.21",
+    "babel-preset-es2015": "^6.1.18",
+    "babel-preset-stage-0": "^6.1.18",
     "chai": "^3.2.0",
     "gulp": "^3.9.0",
-    "gulp-babel": "^5.2.1",
-    "gulp-watch": "^4.3.4",
+    "gulp-babel": "^6.1.0",
     "mocha": "*",
     "sinon": "^1.14.1",
     "sinon-chai": "^2.7.0"

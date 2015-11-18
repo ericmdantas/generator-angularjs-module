@@ -1,18 +1,10 @@
 'use strict';
 
-Object.defineProperty(exports, '__esModule', {
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+Object.defineProperty(exports, "__esModule", {
   value: true
 });
-
-var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-
-var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; desc = parent = getter = undefined; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 var _yeomanGenerator = require('yeoman-generator');
 
@@ -32,60 +24,52 @@ var _lodash = require('lodash');
 
 var _lodash2 = _interopRequireDefault(_lodash);
 
-var AngularJSModule = (function (_Base) {
-  _inherits(AngularJSModule, _Base);
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-  function AngularJSModule(args, options, config) {
-    _classCallCheck(this, AngularJSModule);
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-    _get(Object.getPrototypeOf(AngularJSModule.prototype), 'constructor', this).call(this, args, options, config);
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-    this.yosay = _yosay2['default'];
-    this.chalk = _chalk2['default'];
-    this.lodash = _lodash2['default'];
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-    this.gen = new _generator2['default']();
+var AngularJSModule = class AngularJSModule extends _yeomanGenerator.Base {
+  constructor(args, options, config) {
+    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(AngularJSModule).call(this, args, options, config));
+
+    _this.yosay = _yosay2.default;
+    _this.chalk = _chalk2.default;
+    _this.lodash = _lodash2.default;
+
+    _this.gen = new _generator2.default();
+    return _this;
   }
 
-  _createClass(AngularJSModule, [{
-    key: 'initializing',
-    value: function initializing() {
-      this.pkg = require('../package.json');
-    }
-  }, {
-    key: 'sayHello',
-    value: function sayHello() {
-      this.gen.sayHello(this);
-    }
-  }, {
-    key: 'askFor',
-    value: function askFor() {
-      this.gen.promptOptions(this);
-    }
-  }, {
-    key: 'askForCss',
-    value: function askForCss() {
-      this.gen.promptOptionsCssNg1(this);
-    }
-  }, {
-    key: 'askForWorker',
-    value: function askForWorker() {
-      this.gen.promptOptionsWorker(this);
-    }
-  }, {
-    key: 'copyFiles',
-    value: function copyFiles() {
-      this.gen.copyFiles(this);
-    }
-  }, {
-    key: 'installStuff',
-    value: function installStuff() {
-      this.gen.installDependencies(this);
-    }
-  }]);
+  initializing() {
+    this.pkg = require('../package.json');
+  }
 
-  return AngularJSModule;
-})(_yeomanGenerator.Base);
+  sayHello() {
+    this.gen.sayHello(this);
+  }
 
-exports['default'] = AngularJSModule;
-module.exports = exports['default'];
+  askFor() {
+    this.gen.promptOptions(this);
+  }
+
+  askForCss() {
+    this.gen.promptOptionsCssNg1(this);
+  }
+
+  askForWorker() {
+    this.gen.promptOptionsWorker(this);
+  }
+
+  copyFiles() {
+    this.gen.copyFiles(this);
+  }
+
+  installStuff() {
+    this.gen.installDependencies(this);
+  }
+};
+exports.default = AngularJSModule;

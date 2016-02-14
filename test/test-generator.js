@@ -1,7 +1,10 @@
-import Generator from '../app/generator';
-import chai, {expect} from 'chai';
-import sinon from 'sinon';
-import sinonChai from 'sinon-chai';
+"use strict";
+
+const Generator = require('../app/generator');
+const chai = require('chai');
+const expect = chai.expect;
+const sinon = require('sinon');
+const sinonChai = require('sinon-chai');
 
 chai.use(sinonChai);
 
@@ -109,7 +112,7 @@ describe('test-generator', () => {
 
     it('should get variables correctly when is not compiling styles', () => {
       userInput.compileStyles = false;
-      
+
       let response = _generator.getVariables(userInput);
 
       expect(response.app).to.equals(userInput.appName);

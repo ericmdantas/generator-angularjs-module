@@ -1,7 +1,9 @@
-import path from 'path';
-import {assert} from 'yeoman-generator';
-import {test as helpers} from 'yeoman-generator';
-import os from 'os';
+"use strict";
+
+const path = require('path');
+const assert = require('yeoman-generator').assert;
+const helpers = require('yeoman-generator').test;
+const os = require('os');
 
 describe('angularjs-module:app', () => {
   describe('ng1', () => {

@@ -13,9 +13,8 @@
     "node": "stable"
   },
   "scripts": {
-    "start": "gulp compile",
-    "prepublish": "gulp compile",
-    "test": "gulp compile && mocha --reporter min --require babel-core/register"
+    "prepublish": "npm t",
+    "test": "mocha --reporter min"
   },
   "files": [
     "app"
@@ -40,19 +39,10 @@
     "yosay": "^0.3.0"
   },
   "devDependencies": {
-    "babel": "^6.1.18",
-    "babel-cli": "^6.1.18",
-    "babel-core": "^6.1.21",
-    "babel-plugin-transform-es2015-modules-commonjs": "^6.1.20",
     "chai": "^3.2.0",
-    "gulp": "^3.9.0",
-    "gulp-babel": "^6.1.0",
     "mocha": "*",
     "sinon": "^1.14.1",
     "sinon-chai": "^2.7.0"
-  },
-  "babel": {
-    "plugins": ["transform-es2015-modules-commonjs"]
   },
   "bugs": {
     "url": "https://github.com/ericmdantas/generator-angularjs-module/issues"

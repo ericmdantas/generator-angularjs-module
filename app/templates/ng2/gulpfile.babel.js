@@ -42,7 +42,6 @@ gulp.task('unit_test', (done) => {
 });
 
 gulp.task('coverage', ['unit_test'], () => {
-  return gulp
-          .src(_coverage)
-          .pipe(coveralls());
+  return gulp.src(_coverage)
+             .pipe(coveralls());
 });

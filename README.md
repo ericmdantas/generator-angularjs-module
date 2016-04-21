@@ -31,12 +31,15 @@ Answer the questions that'll pop up, and then BOOM!
 You've got:
 
 - Karma ready to run your tests on PhantomJS, Chrome, Firefox, etc. 
+
 - Code coverage;
   
 - gulpfile.js ready to test your source code, minify it to distribution, etc.
 
 - Travis CI integration and badge;
+
 - Coveralls integration and badge;
+
 - README with both Travis CI and coveralls badge;     
 
 

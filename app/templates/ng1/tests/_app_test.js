@@ -1,6 +1,6 @@
 "use strict";
 
-describe('my awesome app', function() {
+describe('<%= app %>', function() {
   var _GreetingService;
 
   beforeEach(module('<%= app %>'));
@@ -19,7 +19,7 @@ describe('my awesome app', function() {
     });
 
     it('should say hello', function() {
-        expect(_GreetingService.sayHello()).toEqual("hello there!");
+      expect(_GreetingService.sayHello()).toEqual("hello there!");
     });
   });
 });

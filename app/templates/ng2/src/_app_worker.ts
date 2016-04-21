@@ -6,6 +6,10 @@ import {
   forwardRef
 } from 'angular2/web_worker/worker';
 
+import {
+  Observable
+} from 'rxjs/Observable';
+
 @Component({
   selector: 'app',
   templateUrl: 'src/app.html',
@@ -31,9 +35,9 @@ export class AppCmp implements OnInit {
 class AppService {
   private _ee: EventEmitter = new EventEmitter();
 
-  doSomething():Rx.Observable<any> {
-    setTimeout(() => this._ee.next('hello :D'));
-
-    return this._ee.toRx();
+  doSomething():Observable<any> {
+    return new Observable((o) => {
+      o.next('hello :D');
+    })
   }
 }

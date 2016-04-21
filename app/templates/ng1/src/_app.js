@@ -3,8 +3,8 @@
 
   ng.module('<%= app %>', [])
     .service('GreetingService', [function GreetingService() {
-          this.sayHello = function() {
-             return "hello there!";
-          };
+        this.sayHello = function() {
+           return "hello there!";
+        };
       }]);
-}(angular));
+}(window.angular));

@@ -1,5 +1,5 @@
 // Tun on full stack traces in errors to help debugging
-Error.stackTraceLimit=Infinity;
+Error.stackTraceLimit = Infinity;
 
 
 jasmine.DEFAULT_TIMEOUT_INTERVAL = 1000;
@@ -18,10 +18,9 @@ System.config({
             filter(onlyAppFiles).
             reduce(function createPathRecords(pathsMapping, appPath) {
               // creates local module name mapping to global path with karma's fingerprint in path, e.g.:
-              // './hero.service': '/base/src/hero.service.js?f4523daf879cfb7310ef6242682ccf10b2041b3e'
+              // './hero.service': '/base/src/app/hero.service.js?f4523daf879cfb7310ef6242682ccf10b2041b3e'
               var moduleName = appPath.replace(/^\/base\/src\//, './').replace(/\.js$/, '');
               pathsMapping[moduleName] = appPath + '?' + window.__karma__.files[appPath]
-
               return pathsMapping;
             }, {})
 
@@ -29,15 +28,18 @@ System.config({
     }
 });
 
-System.import('angular2/src/platform/browser/browser_adapter').then(function(browser_adapter) {
-  browser_adapter.BrowserDomAdapter.makeCurrent();
+System.import('angular2/testing').then(function(testing) {
+  return System.import('angular2/platform/testing/browser').then(function(providers) {
+    testing.setBaseTestProviders(providers.TEST_BROWSER_PLATFORM_PROVIDERS,
+                                 providers.TEST_BROWSER_APPLICATION_PROVIDERS);
+  });
 }).then(function() {
   return Promise.all(
     Object.keys(window.__karma__.files) // All files served by Karma.
     .filter(onlySpecFiles)
     // .map(filePath2moduleName)        // Normalize paths to module names.
     .map(function(moduleName) {
-      // loads all spec files via their global module names (e.g. 'base/src/hero.service.spec')
+      // loads all spec files via their global module names (e.g. 'base/src/app/hero.service.spec')
       return System.import(moduleName);
     }));
 })

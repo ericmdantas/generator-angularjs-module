@@ -24,9 +24,7 @@
   "dependencies": {
     "angular": ">=1.0.8"
   },
-  "devDependencies":
-  {
+  "devDependencies": {
     "angular-mocks": ">=1.0.8"
   }
-
 }

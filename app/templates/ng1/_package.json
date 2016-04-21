@@ -3,7 +3,8 @@
   "version": "0.0.1",
   "main": <%= main %>,
   "scripts": {
-    "test": "gulp coverage"
+    "test": "gulp unit_test",
+    "coverage": "gulp coverage"
   },
   "dependencies": {},
   "devDependencies": {

@@ -14,11 +14,9 @@
     "zone.js": "^0.6.11"
   },
   "devDependencies": {
-    "babel": "^6.1.18",
-    "babel-cli": "^6.1.18",
+    "babel-register": "^6.7.2",
     "babel-preset-es2015": "^6.1.18",
     "babel-preset-stage-0": "^6.1.18",
-    "babel-core": "^5.8.25",
     "gulp": "^3.9.0",
     "gulp-concat": "^2.5.2",
     "gulp-coveralls": "^0.1.4",
@@ -37,6 +35,9 @@
     "karma-opera-launcher": "^0.1.0",
     "karma-phantomjs-launcher": "^0.1.4",
     "karma-safari-launcher": "^0.1.1"
+  },
+  "babel": {
+    "presets": ["es2015", "stage-0"]
   },
   "repository": {
     "type": "git",

@@ -6,5 +6,5 @@
         this.sayHello = function() {
            return "hello there!";
         };
-      }]);
+    }]);
 }(window.angular));

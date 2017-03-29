@@ -1,6 +1,6 @@
 {
   "name": "generator-angularjs-module",
-  "version": "1.4.6",
+  "version": "1.4.7",
   "description": "Yeoman generator",
   "license": "MIT",
   "main": "app/index.js",

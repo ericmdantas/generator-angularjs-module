@@ -4,7 +4,8 @@
   "main": <%= main %>,
   "scripts": {
     "test": "gulp unit_test",
-    "coverage": "gulp coverage"
+    "build": "gulp build",
+    "test-ci": "gulp test-ci"
   },
   "dependencies": {},
   "devDependencies": {

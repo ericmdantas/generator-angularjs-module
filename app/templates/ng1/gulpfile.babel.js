@@ -38,7 +38,7 @@ gulp.task('unit_test', (done) => {
     browsers: ['Chrome']
   };
 
-  return karma.start(_opts, done);
+  return Karma.start(_opts, done);
 });
 
 gulp.task('test-ci', ['unit_test'], () => {

@@ -1,46 +1,58 @@
 import gulp from 'gulp';
 import uglify from 'gulp-uglify';
 import coveralls from 'gulp-coveralls';
-import cssmin from 'gulp-cssmin';
+<% if (compileStyles) { %>
+import cssmin from 'gulp-cssmin'; 
+<% } %>
 import concat from 'gulp-concat';
 import rename from 'gulp-rename';
 import {Server as Karma} from 'karma';
 
-const _coverage = 'coverage/**/lcov.info';
-const _scripts = 'src/**/*.js';
-const _styles = 'src/**/*.css';
-const _script = '<%= app %>.js';
-const _style = '<%= app %>.css';
-const _dist = 'dist';
+const COVERAGE_PATH = 'coverage/**/lcov.info';
+const SCRIPTS_PATH = 'src/**/*.js';
+<% if (compileStyles) { %>
+const STYLES_PATH = 'src/**/*.css'; 
+<% } %>
+const MAIN_SCRIPT = '<%= app %>.js';
+const MAIN_STYLE = '<%= app %>.css';
+const DIST_PATH = 'dist';
 
+<% if (compileStyles) { %>
 gulp.task('build-css', () => {
-  return gulp.src(_styles)
-    .pipe(concat(_style.toLowerCase()))
-    .pipe(gulp.dest(_dist))
+  return gulp.src(STYLES_PATH)
+    .pipe(concat(MAIN_STYLE.toLowerCase()))
+    .pipe(gulp.dest(DIST_PATH))
     .pipe(cssmin())
     .pipe(rename({suffix: '.min'}))
-    .pipe(gulp.dest(_dist));
+    .pipe(gulp.dest(DIST_PATH));
 });
 
 gulp.task('build', ['unit_test', 'build-css'], () => {
-  return gulp.src(_scripts)
-    .pipe(concat(_script.toLowerCase()))
-    .pipe(gulp.dest(_dist))
+  return gulp.src(SCRIPTS_PATH)
+    .pipe(concat(MAIN_SCRIPT.toLowerCase()))
+    .pipe(gulp.dest(DIST_PATH))
     .pipe(uglify())
     .pipe(rename({suffix: '.min'}))
-    .pipe(gulp.dest(_dist));
+    .pipe(gulp.dest(DIST_PATH));
 });
-
+<% } else {%>
+gulp.task('build', ['unit_test'], () => {
+  return gulp.src(SCRIPTS_PATH)
+    .pipe(concat(MAIN_SCRIPT.toLowerCase()))
+    .pipe(gulp.dest(DIST_PATH))
+    .pipe(uglify())
+    .pipe(rename({suffix: '.min'}))
+    .pipe(gulp.dest(DIST_PATH));
+});
+<% } %>
 gulp.task('unit_test', (done) => {
-  let _opts = {
+  return new Karma({
     configFile: __dirname + '/karma.conf.js',
     singleRun: true,
     browsers: ['Chrome']
-  };
-
-  return Karma.start(_opts, done);
+  }, (exitCode) => done(exitCode)).start();
 });
 
 gulp.task('test-ci', ['unit_test'], () => {
-  return gulp.src(_coverage).pipe(coveralls());
+  return gulp.src(COVERAGE_PATH).pipe(coveralls());
 });

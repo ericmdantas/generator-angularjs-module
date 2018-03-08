@@ -4,7 +4,7 @@ node_js:
   - "stable"
 
 script:
-  - npm run coverage
+  - npm run test-ci
 
 before_script:
   - npm install -g gulp-cli bower

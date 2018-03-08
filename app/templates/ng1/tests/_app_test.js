@@ -9,17 +9,19 @@ describe('<%= app %>', function() {
     _GreetingService = $injector.get('GreetingService');
   }));
 
-  describe('sayHello', function() {
-    it('should call the say hello function', function() {
-      spyOn(_GreetingService, 'sayHello').and.callFake(angular.noop);
+  describe('GreetingService', function() {
+    describe('sayHello', function () {
+      it('should call the say hello function', function () {
+        spyOn(_GreetingService, 'sayHello').and.callFake(angular.noop);
 
-      _GreetingService.sayHello();
+        _GreetingService.sayHello();
 
-      expect(_GreetingService.sayHello).toHaveBeenCalled();
-    });
+        expect(_GreetingService.sayHello).toHaveBeenCalled();
+      });
 
-    it('should say hello', function() {
-      expect(_GreetingService.sayHello()).toEqual("hello there!");
+      it('should say hello', function () {
+        expect(_GreetingService.sayHello()).toEqual("hello there!");
+      });
     });
   });
 });

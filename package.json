@@ -10,7 +10,7 @@
   },
   "author": "Eric Mendes Dantas <ericdantas0@gmail.com> (https://github.com/ericmdantas)",
   "engines": {
-    "node": "stable"
+    "node": ">=9.x"
   },
   "scripts": {
     "prepublish": "npm t",
